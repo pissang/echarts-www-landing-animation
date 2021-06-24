@@ -1,40 +1,21 @@
-import './style.css'
+import { createI18n } from 'vue-i18n';
 
-import * as echarts from 'echarts'
-import stages from './stages/index'
+import App from './App.vue';
+import { createApp } from 'vue';
 
-let playIndex = 0
+// @ts-ignore
+const locale: string = window.ECHARTS_WEBSITE_LANGUAGE;
 
-if (import.meta.hot) {
-  import.meta.hot.accept('./stages/index', (newStages) => {
-    chart.setOption(newStages.default[playIndex], true)
-  })
+if (typeof locale === 'undefined') {
+  // console.error("Can't find environment variable ECHARTS_WEBSITE_LANGUAGE");
 }
 
-function setIndexToHash() {
-  window.location.hash = 'stage_' + playIndex
-}
-function getIndexFromHash() {
-  let newIndex = +window.location.hash.substr(1).replace('stage_', '') || 0
-  if (newIndex !== playIndex) {
-    playIndex = newIndex
-    chart.setOption(stages[newIndex], true)
-  }
-}
-function nextStage() {}
+const i18n = createI18n({
+  locale,
+  messages: {}
+});
 
-function setToCurrentStage(option) {}
+const app = createApp(App);
+app.use(i18n);
 
-getIndexFromHash()
-// Init chart
-const main = document.querySelector<HTMLDivElement>('#index-viewport')!
-const chart = echarts.init(main)
-chart.setOption(stages[playIndex])
-setIndexToHash()
-
-window.onresize = function () {
-  chart.resize()
-}
-window.onhashchange = function () {
-  getIndexFromHash()
-}
+app.mount('#index-viewport');

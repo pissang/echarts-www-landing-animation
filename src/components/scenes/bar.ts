@@ -1,4 +1,5 @@
-import { EChartsOption } from 'echarts'
+import { EChartsOption } from 'echarts';
+import Scene from './Scene';
 
 const funnel: EChartsOption = {
   duration: 1000,
@@ -19,6 +20,9 @@ const funnel: EChartsOption = {
       ],
     },
   ],
-}
+};
 
-export default funnel
+export default new Scene({
+  option: funnel,
+  duration: 1000,
+});
