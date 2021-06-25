@@ -2,21 +2,11 @@
 import { EChartsOption } from 'echarts';
 import { defaultPalette } from './common/colorPalette';
 import parliamentLayout from './common/parliamentLayout';
+import pieLayout from './common/pieLayout';
 import pieData from './common/pieData';
 import Scene from './Scene';
 
-const sum = pieData.reduce((sum, cur) => {
-  return sum + cur.value;
-}, 0);
-
-const angles: number[] = [];
-const startAngle = -Math.PI / 2;
-let curAngle = startAngle;
-pieData.forEach(item => {
-  angles.push(curAngle);
-  curAngle += (item.value / sum) * Math.PI * 2;
-});
-angles.push(startAngle + Math.PI * 2);
+const angles: number[] = pieLayout(pieData, -Math.PI / 2, Math.PI * 2);
 
 const radius = ['30%', '80%'];
 
