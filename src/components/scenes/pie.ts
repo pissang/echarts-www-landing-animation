@@ -2,21 +2,18 @@ import { EChartsOption } from 'echarts';
 import pieData from './common/pieData';
 import Scene from './Scene';
 
-const entryPieOptions: EChartsOption[] = [
+const pieOption: EChartsOption[] = [
   {
     series: [
       {
         type: 'pie',
-        center: ['70%', '50%'],
-        radius: ['10%', '70%'],
-        roseType: 'radius',
+        center: ['50%', '50%'],
+        radius: ['30%', '80%'],
         label: {
           show: false
         },
         itemStyle: {
-          borderRadius: 10,
-          borderColor: '#fff',
-          borderWidth: 5
+          borderRadius: 0
         },
         universalTransition: {
           enabled: true,
@@ -30,6 +27,6 @@ const entryPieOptions: EChartsOption[] = [
 ];
 
 export default new Scene({
-  option: entryPieOptions,
+  option: pieOption,
   duration: 1500
 });

@@ -70,7 +70,7 @@ onMounted(() => {
     getIndexFromHash();
   };
 
-  // getIndexFromHash();
+  getIndexFromHash();
   playCurrentScene();
 });
 </script>
@@ -98,16 +98,19 @@ onMounted(() => {
   height: 100%;
 }
 #timeline .checkpoint {
-  width: 10px;
-  height: 10px;
   background-color: black;
   opacity: 0.5;
 
-  @apply rounded-full w-3 h-3 ml-2 mr-2;
+  @apply rounded-full w-2 h-2 ml-2 mr-2;
   @apply cursor-pointer;
+  @apply transition-transform;
 }
 
-#timeline .checkpoint.current {
-  @apply scale-150;
+#timeline .checkpoint.current,
+#timeline .checkpoint.current:hover {
+  transform: scale(1.5);
+}
+#timeline .checkpoint:hover {
+  transform: scale(1.2);
 }
 </style>

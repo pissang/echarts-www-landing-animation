@@ -1,3 +1,4 @@
+// Parliament chart
 import { EChartsOption } from 'echarts';
 import { defaultPalette } from './common/colorPalette';
 import parliamentLayout from './common/parliamentLayout';
@@ -17,7 +18,7 @@ pieData.forEach(item => {
 });
 angles.push(startAngle + Math.PI * 2);
 
-const radius = ['30%', '90%'];
+const radius = ['30%', '80%'];
 
 const paliamentOption: EChartsOption = {
   series: {
@@ -28,7 +29,7 @@ const paliamentOption: EChartsOption = {
       enabled: true,
       seriesKey: 'first'
     },
-    animationDurationUpdate: 2000,
+    animationDurationUpdate: 1000,
     renderItem(params, api) {
       const idx = params.dataIndex;
       const viewSize = Math.min(api.getWidth(), api.getHeight());
@@ -36,18 +37,20 @@ const paliamentOption: EChartsOption = {
       const r1 = ((parseFloat(radius[1]) / 100) * viewSize) / 2;
       const cx = api.getWidth() * 0.5;
       const cy = api.getHeight() * 0.5;
-      const size = 10;
+      const size = 15;
 
       const points = parliamentLayout(
         angles[idx],
         angles[idx + 1],
+        Math.PI * 2,
         r0,
         r1,
-        size + 2
+        size + 3
       );
 
       return {
         type: 'group',
+        focus: 'self',
         children: points.map(pt => {
           return {
             type: 'circle',

@@ -40,6 +40,8 @@ class Scene {
     if (this._timeout) {
       clearTimeout(this._timeout);
     }
+    // Reset
+    this._currentIndex = 0;
     this._playCurrent(chart, true);
   }
 
