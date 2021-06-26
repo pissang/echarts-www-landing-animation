@@ -1,5 +1,5 @@
 import { EChartsOption } from 'echarts';
-import pieData from './common/pieData';
+import pieData from './data/pieData';
 import Scene from './Scene';
 
 const entryPieOptions: EChartsOption[] = [
@@ -11,25 +11,25 @@ const entryPieOptions: EChartsOption[] = [
         radius: ['10%', '70%'],
         roseType: 'radius',
         label: {
-          show: false
+          show: false,
         },
         itemStyle: {
           borderRadius: 10,
           borderColor: '#fff',
-          borderWidth: 5
+          borderWidth: 5,
         },
         universalTransition: {
           enabled: true,
-          seriesKey: 'first'
+          seriesKey: 'first',
         },
         animationDurationUpdate: 1000,
-        data: pieData
-      }
-    ]
-  }
+        data: pieData,
+      },
+    ],
+  },
 ];
 
 export default new Scene({
   option: entryPieOptions,
-  duration: 1500
+  duration: 1500,
 });

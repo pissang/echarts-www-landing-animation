@@ -2,7 +2,7 @@
 import { EChartsOption } from 'echarts';
 import Scene from './Scene';
 import { packSiblings, packEnclose } from 'd3-hierarchy';
-import pieData from './common/pieData';
+import pieData from './data/pieData';
 import pieLayout from './common/pieLayout';
 import { layoutSector } from './common/parliamentLayout';
 import { defaultPalette } from './common/colorPalette';
@@ -24,7 +24,7 @@ const surveyOption: EChartsOption = {
       seriesKey: 'first',
       delay(idx, count) {
         return (idx / count) * 1000;
-      }
+      },
     },
     animationDurationUpdate: 1000,
     renderItem(params, api) {
@@ -49,9 +49,9 @@ const surveyOption: EChartsOption = {
       const cy = cellHeight * Math.floor(idx / columnCount) + cellHeight / 2;
 
       const circles: { x: number; y: number; r: number }[] = packSiblings(
-        points.map(pt => {
+        points.map((pt) => {
           return {
-            r: (Math.pow(Math.random(), 10) * size) / 2 + size / 3
+            r: (Math.pow(Math.random(), 10) * size) / 2 + size / 3,
           };
         })
         // .sort((a, b) => b.r - a.r)
@@ -63,18 +63,18 @@ const surveyOption: EChartsOption = {
         type: 'group',
         focus: 'self',
         children: circles
-          .map(circle => {
+          .map((circle) => {
             return {
               type: 'circle',
               autoBatch: true,
               shape: {
                 cx: cx + circle.x,
                 cy: cy + circle.y,
-                r: circle.r
+                r: circle.r,
               },
               style: {
-                fill: defaultPalette[idx % defaultPalette.length]
-              }
+                fill: defaultPalette[idx % defaultPalette.length],
+              },
             };
           })
           .concat([
@@ -84,21 +84,21 @@ const surveyOption: EChartsOption = {
               shape: {
                 cx: cx,
                 cy: cy,
-                r
+                r,
               },
               style: {
                 stroke: '#eee',
-                fill: 'none'
-              }
-            } as any
-          ])
+                fill: 'none',
+              },
+            } as any,
+          ]),
       };
-    }
-  }
+    },
+  },
 };
 
 export default new Scene({
   option: surveyOption,
   title: 'Survey Chart',
-  duration: 1000
+  duration: 1000,
 });

@@ -3,7 +3,7 @@ import { EChartsOption } from 'echarts';
 import { defaultPalette } from './common/colorPalette';
 import { layoutSector } from './common/parliamentLayout';
 import pieLayout from './common/pieLayout';
-import pieData from './common/pieData';
+import pieData from './data/pieData';
 import Scene from './Scene';
 
 const angles: number[] = pieLayout(pieData, -Math.PI / 2, Math.PI * 2);
@@ -17,7 +17,7 @@ const paliamentOption: EChartsOption = {
     coordinateSystem: undefined,
     universalTransition: {
       enabled: true,
-      seriesKey: 'first'
+      seriesKey: 'first',
     },
     animationDurationUpdate: 1000,
     renderItem(params, api) {
@@ -41,27 +41,27 @@ const paliamentOption: EChartsOption = {
       return {
         type: 'group',
         focus: 'self',
-        children: points.map(pt => {
+        children: points.map((pt) => {
           return {
             type: 'circle',
             autoBatch: true,
             shape: {
               cx: cx + pt[0],
               cy: cy + pt[1],
-              r: size / 2
+              r: size / 2,
             },
             style: {
-              fill: defaultPalette[idx % defaultPalette.length]
-            }
+              fill: defaultPalette[idx % defaultPalette.length],
+            },
           };
-        })
+        }),
       };
-    }
-  }
+    },
+  },
 };
 
 export default new Scene({
   option: paliamentOption,
   title: 'Parliament Chart',
-  duration: 1000
+  duration: 1000,
 });

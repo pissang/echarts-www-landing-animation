@@ -1,6 +1,6 @@
 // Parliament chart
 import { EChartsOption } from 'echarts';
-import pieData from './common/pieData';
+import pieData from './data/pieData';
 import Scene from './Scene';
 
 function project3dcoords(
@@ -36,7 +36,7 @@ for (let i = 0; i < grid; i++) {
     randData.push({
       value: [x, y, Math.random()],
       dist: Math.round(y * 1000) + x,
-      groupId: pieData[Math.round(Math.random() * (pieData.length - 1))].name
+      groupId: pieData[Math.round(Math.random() * (pieData.length - 1))].name,
     });
   }
 }
@@ -52,7 +52,7 @@ const waveOption: EChartsOption[] = [
       coordinateSystem: undefined,
       universalTransition: {
         enabled: true,
-        seriesKey: 'first'
+        seriesKey: 'first',
       },
       animationThreshold: 1e5,
       animationDurationUpdate: 500,
@@ -69,16 +69,16 @@ const waveOption: EChartsOption[] = [
           shape: {
             cx: x,
             cy: y,
-            r: size / 2
+            r: size / 2,
             // width: size,
             // height: size
           },
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)'
-          }
+            fill: 'rgba(255, 255, 255, 0.5)',
+          },
         };
-      }
-    }
+      },
+    },
   },
   // grid
   {
@@ -86,7 +86,7 @@ const waveOption: EChartsOption[] = [
       animationEasingUpdate: 'cubicInOut',
       universalTransition: {
         // Need to disable universal transition to continue custom series animation
-        enabled: false
+        enabled: false,
       },
       renderItem(params, api) {
         const idx = params.dataIndex;
@@ -101,17 +101,17 @@ const waveOption: EChartsOption[] = [
           shape: {
             cx: x,
             cy: y,
-            r: size / 2
+            r: size / 2,
             // width: size,
             // height: size
           },
           transition: ['shape'],
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)'
-          }
+            fill: 'rgba(255, 255, 255, 0.5)',
+          },
         };
-      }
-    }
+      },
+    },
   },
   // grid with size
   {
@@ -130,15 +130,15 @@ const waveOption: EChartsOption[] = [
           shape: {
             cx: x,
             cy: y,
-            r: size / 2
+            r: size / 2,
           },
           transition: ['shape'],
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)'
-          }
+            fill: 'rgba(255, 255, 255, 0.5)',
+          },
         };
-      }
-    }
+      },
+    },
   },
   // wave
   {
@@ -162,18 +162,18 @@ const waveOption: EChartsOption[] = [
           shape: {
             cx: x2d,
             cy: y2d,
-            r: size / 2
+            r: size / 2,
           },
           extra: {
-            percent: 0
+            percent: 0,
           },
           transition: ['shape'],
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)'
-          }
+            fill: 'rgba(255, 255, 255, 0.5)',
+          },
         };
-      }
-    }
+      },
+    },
   },
 
   {
@@ -196,14 +196,14 @@ const waveOption: EChartsOption[] = [
           shape: {
             cx: x2d,
             cy: y2d,
-            r: size / 2
+            r: size / 2,
           },
           extra: {
-            percent: 1
+            percent: 1,
           },
           transition: 'extra',
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)'
+            fill: 'rgba(255, 255, 255, 0.5)',
           },
           during(duringApi) {
             const elapsedTime = duringApi.getExtra('percent') * 5;
@@ -211,10 +211,10 @@ const waveOption: EChartsOption[] = [
             const [x2d, y2d] = project3dcoords(x, y, z, w, h);
             duringApi.setShape('cx', x2d);
             duringApi.setShape('cy', y2d);
-          }
+          },
         };
-      }
-    }
+      },
+    },
   },
   // To a line
   {
@@ -242,15 +242,15 @@ const waveOption: EChartsOption[] = [
           shape: {
             cx: x2d + Math.random() * 5,
             cy: api.getHeight() / 2,
-            r: 1
+            r: 1,
           },
           transition: ['shape'],
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)'
-          }
+            fill: 'rgba(255, 255, 255, 0.5)',
+          },
         };
-      }
-    }
+      },
+    },
   },
 
   // To a dot
@@ -266,23 +266,23 @@ const waveOption: EChartsOption[] = [
           shape: {
             cx: api.getWidth() / 2,
             cy: api.getHeight() / 2,
-            r: 0
+            r: 0,
           },
           transition: ['shape'],
           style: {
             transition: ['opacity'],
             opacity: 0,
-            fill: 'rgba(255, 255, 255, 0.5)'
-          }
+            fill: 'rgba(255, 255, 255, 0.5)',
+          },
         };
-      }
-    }
-  }
+      },
+    },
+  },
 ];
 
 export default new Scene({
   option: waveOption,
   title: 'Particles by Custom Series',
   background: 'orange',
-  duration: [700, 500, 1000, 500, 5000, 1500, 500]
+  duration: [700, 500, 1000, 500, 5000, 1500, 500],
 });
