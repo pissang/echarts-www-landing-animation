@@ -7,8 +7,8 @@ class Scene {
   // One scene may have mulitple options. each option will use merge mode to simplify the option code.
   private _options: EChartsOption[];
   private _durations: number[];
-  private _titles: string | string[];
-  private _backgrounds: string | string[];
+  private _title: string;
+  private _background: string;
 
   private _currentIndex: number = 0;
 
@@ -22,8 +22,8 @@ class Scene {
   }) {
     this._options = convertToArray(opts.option);
     this._durations = convertToArray(opts.duration);
-    this._titles = convertToArray(opts.title || '');
-    this._backgrounds = convertToArray(opts.background || '');
+    this._title = opts.title || '';
+    this._background = opts.background || '';
   }
 
   getDuration() {
@@ -36,6 +36,10 @@ class Scene {
     return sum;
   }
 
+  getTitle() {
+    return this._title;
+  }
+
   play(chart: ECharts, container: HTMLElement) {
     if (this._timeout) {
       clearTimeout(this._timeout);
@@ -43,6 +47,10 @@ class Scene {
     // Reset
     this._currentIndex = 0;
     this._playCurrent(chart, container, true);
+  }
+
+  stop() {
+    clearTimeout(this._timeout);
   }
 
   private _playCurrent(
@@ -54,9 +62,7 @@ class Scene {
       return;
     }
     chart.setOption(this._options[this._currentIndex], notMerge);
-    const bg =
-      this._backgrounds[this._currentIndex] ||
-      this._backgrounds[this._backgrounds.length - 1];
+    const bg = this._background;
     if (bg) {
       container.style.background = bg;
     } else {

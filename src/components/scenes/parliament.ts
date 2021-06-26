@@ -62,5 +62,6 @@ const paliamentOption: EChartsOption = {
 
 export default new Scene({
   option: paliamentOption,
+  title: 'Parliament Chart',
   duration: 1000
 });

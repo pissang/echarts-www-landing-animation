@@ -8,6 +8,9 @@
         @click="playIndex = idx"
       ></div>
     </div>
+    <div id="stage-title">
+      {{ (currentScene && currentScene.getTitle()) || '' }}
+    </div>
   </div>
 </template>
 
@@ -26,11 +29,7 @@ const playIndex = ref(0);
 const chart = shallowRef<ECharts | null | undefined>(null);
 const containerRef = ref<HTMLElement | null | undefined>(null);
 
-// if (import.meta.hot) {
-//   import.meta.hot.accept('./scenes/index', newScenes => {
-//     scenes.value = newScenes.default;
-//   });
-// }
+const currentScene = ref<Scene | null>(null);
 
 function setIndexToHash() {
   window.location.hash = 'scene_' + playIndex.value;
@@ -56,7 +55,11 @@ watch([scenes, playIndex], () => {
 });
 
 function playCurrentScene() {
-  scenes.value[playIndex.value].play(chart.value!, containerRef.value!);
+  if (currentScene.value) {
+    currentScene.value.stop();
+  }
+  currentScene.value = scenes.value[playIndex.value];
+  currentScene.value.play(chart.value!, containerRef.value!);
   setIndexToHash();
 }
 
@@ -76,6 +79,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
 #stage-viewport {
   position: absolute;
   left: 0;
@@ -84,6 +89,18 @@ onMounted(() => {
   bottom: 0;
 
   transition: linear 200ms background;
+}
+
+#stage-title {
+  position: absolute;
+  left: 20px;
+  bottom: 30px;
+  font-size: 30px;
+
+  transition: linear 200ms color;
+
+  z-index: 1000;
+  font-family: 'Oswald', sans-serif;
 }
 
 #timeline {

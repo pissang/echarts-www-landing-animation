@@ -28,5 +28,6 @@ const pieOption: EChartsOption[] = [
 
 export default new Scene({
   option: pieOption,
+  title: 'Basic Pie Chart',
   duration: 1500
 });

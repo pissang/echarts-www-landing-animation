@@ -99,5 +99,6 @@ const surveyOption: EChartsOption = {
 
 export default new Scene({
   option: surveyOption,
+  title: 'Survey Chart',
   duration: 1000
 });

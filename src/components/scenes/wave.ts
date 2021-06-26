@@ -219,7 +219,7 @@ const waveOption: EChartsOption[] = [
   // To a line
   {
     series: {
-      animationEasingUpdate: 'cubicInOut',
+      animationEasingUpdate: 'elasticOut',
       animationDurationUpdate: 500,
       animationDelayUpdate(idx) {
         return Math.random() * 1000;
@@ -258,6 +258,7 @@ const waveOption: EChartsOption[] = [
     series: {
       animationEasingUpdate: 'cubicInOut',
       animationDurationUpdate: 500,
+      animationDelayUpdate: 0,
 
       renderItem(params, api) {
         return {
@@ -281,6 +282,7 @@ const waveOption: EChartsOption[] = [
 
 export default new Scene({
   option: waveOption,
+  title: 'Particles by Custom Series',
   background: 'orange',
-  duration: [700, 1000, 1000, 500, 5000, 1500, 500]
+  duration: [700, 500, 1000, 500, 5000, 1500, 500]
 });

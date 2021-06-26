@@ -48,5 +48,6 @@ const barPolar: EChartsOption = {
 export default new Scene({
   option: barPolar,
   duration: 1500,
+  title: 'Polar Bar Chart',
   background: 'orange'
 });
