@@ -1,27 +1,35 @@
 import { EChartsOption } from 'echarts';
-import { defaultPalette } from './common/colorPalette';
+import { darkPalette, defaultPalette } from './common/colorPalette';
 import pieData from './common/pieData';
 import Scene from './Scene';
 
-const bar: EChartsOption = {
-  xAxis: {
+const barPolar: EChartsOption = {
+  angleAxis: {
+    axisLine: {
+      lineStyle: {
+        color: '#333'
+      }
+    },
     data: pieData.map(item => item.name)
   },
-  yAxis: {},
+  radiusAxis: {
+    show: false
+  },
+  polar: {
+    radius: ['20%', '70%']
+  },
   series: [
     {
       type: 'bar',
+      coordinateSystem: 'polar',
+      id: 'new',
       label: {
         show: false
       },
-      animationEasingUpdate: 'circularInOut',
       animationDurationUpdate: 1000,
       universalTransition: {
         enabled: true,
-        seriesKey: 'first',
-        delay: (idx, count) => {
-          return count === 1 ? 0 : (1 - idx / count) * 2000;
-        }
+        seriesKey: 'first'
       },
       itemStyle: {},
       data: pieData.map((item, idx) => {
@@ -38,6 +46,7 @@ const bar: EChartsOption = {
 };
 
 export default new Scene({
-  option: bar,
-  duration: 3500
+  option: barPolar,
+  duration: 1500,
+  background: 'orange'
 });

@@ -1,7 +1,7 @@
 // Parliament chart
 import { EChartsOption } from 'echarts';
 import { defaultPalette } from './common/colorPalette';
-import parliamentLayout from './common/parliamentLayout';
+import { layoutSector } from './common/parliamentLayout';
 import pieLayout from './common/pieLayout';
 import pieData from './common/pieData';
 import Scene from './Scene';
@@ -27,9 +27,9 @@ const paliamentOption: EChartsOption = {
       const r1 = ((parseFloat(radius[1]) / 100) * viewSize) / 2;
       const cx = api.getWidth() * 0.5;
       const cy = api.getHeight() * 0.5;
-      const size = 15;
+      const size = viewSize / 40;
 
-      const points = parliamentLayout(
+      const points = layoutSector(
         angles[idx],
         angles[idx + 1],
         Math.PI * 2,

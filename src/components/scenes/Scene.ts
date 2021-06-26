@@ -36,27 +36,39 @@ class Scene {
     return sum;
   }
 
-  play(chart: ECharts) {
+  play(chart: ECharts, container: HTMLElement) {
     if (this._timeout) {
       clearTimeout(this._timeout);
     }
     // Reset
     this._currentIndex = 0;
-    this._playCurrent(chart, true);
+    this._playCurrent(chart, container, true);
   }
 
-  private _playCurrent(chart: ECharts, notMerge: boolean) {
+  private _playCurrent(
+    chart: ECharts,
+    container: HTMLElement,
+    notMerge: boolean
+  ) {
     if (this._currentIndex >= this._options.length) {
       return;
     }
     chart.setOption(this._options[this._currentIndex], notMerge);
+    const bg =
+      this._backgrounds[this._currentIndex] ||
+      this._backgrounds[this._backgrounds.length - 1];
+    if (bg) {
+      container.style.background = bg;
+    } else {
+      container.style.background = 'none';
+    }
 
     const duration =
       this._durations[this._currentIndex] ||
       this._durations[this._durations.length - 1];
     // Play next scene.
     this._timeout = (setTimeout(() => {
-      this._playCurrent(chart, false);
+      this._playCurrent(chart, container, false);
     }, duration) as unknown) as number;
 
     this._currentIndex++;

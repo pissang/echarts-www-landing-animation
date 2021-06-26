@@ -56,7 +56,7 @@ watch([scenes, playIndex], () => {
 });
 
 function playCurrentScene() {
-  scenes.value[playIndex.value].play(chart.value!);
+  scenes.value[playIndex.value].play(chart.value!, containerRef.value!);
   setIndexToHash();
 }
 
@@ -82,6 +82,8 @@ onMounted(() => {
   right: 0;
   top: 0;
   bottom: 0;
+
+  transition: linear 200ms background;
 }
 
 #timeline {

@@ -10,3 +10,15 @@ export const defaultPalette = [
   '#9a60b4',
   '#ea7ccc'
 ];
+
+export const darkPalette = [
+  '#4992ff',
+  '#7cffb2',
+  '#fddd60',
+  '#ff6e76',
+  '#58d9f9',
+  '#05c091',
+  '#ff8a45',
+  '#8d48e3',
+  '#dd79ff'
+];

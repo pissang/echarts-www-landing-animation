@@ -1,16 +1,17 @@
 // Survey chart with circle packing
 import { EChartsOption } from 'echarts';
 import Scene from './Scene';
-import { packSiblings } from 'd3-hierarchy';
+import { packSiblings, packEnclose } from 'd3-hierarchy';
 import pieData from './common/pieData';
 import pieLayout from './common/pieLayout';
-import parliamentLayout from './common/parliamentLayout';
+import { layoutSector } from './common/parliamentLayout';
 import { defaultPalette } from './common/colorPalette';
 
 const angles: number[] = pieLayout(pieData, -Math.PI / 2, Math.PI * 2);
 const radius = ['30%', '80%'];
 
-const columnCount = Math.ceil(Math.sqrt(pieData.length));
+// const columnCount = Math.ceil(Math.sqrt(pieData.length));
+const columnCount = pieData.length;
 const rowCount = Math.ceil(pieData.length / columnCount);
 
 const surveyOption: EChartsOption = {
@@ -20,7 +21,10 @@ const surveyOption: EChartsOption = {
     coordinateSystem: undefined,
     universalTransition: {
       enabled: true,
-      seriesKey: 'first'
+      seriesKey: 'first',
+      delay(idx, count) {
+        return (idx / count) * 1000;
+      }
     },
     animationDurationUpdate: 1000,
     renderItem(params, api) {
@@ -29,8 +33,8 @@ const surveyOption: EChartsOption = {
       const viewSize = Math.min(api.getWidth(), api.getHeight());
       const r0 = ((parseFloat(radius[0]) / 100) * viewSize) / 2;
       const r1 = ((parseFloat(radius[1]) / 100) * viewSize) / 2;
-      const size = 15;
-      const points = parliamentLayout(
+      const size = viewSize / 40;
+      const points = layoutSector(
         angles[idx],
         angles[idx + 1],
         Math.PI * 2,
@@ -41,35 +45,53 @@ const surveyOption: EChartsOption = {
 
       const cellWidth = api.getWidth() / columnCount;
       const cellHeight = api.getHeight() / rowCount;
+      const cx = cellWidth * (idx % columnCount) + cellWidth / 2;
+      const cy = cellHeight * Math.floor(idx / columnCount) + cellHeight / 2;
 
       const circles: { x: number; y: number; r: number }[] = packSiblings(
         points.map(pt => {
           return {
-            r: (Math.random() * size) / 2 + size / 4
+            r: (Math.pow(Math.random(), 10) * size) / 2 + size / 3
           };
         })
+        // .sort((a, b) => b.r - a.r)
       );
 
-      const cx = cellWidth * (idx % columnCount) + cellWidth / 2;
-      const cy = cellHeight * Math.floor(idx / columnCount) + cellHeight / 2;
+      const { r } = packEnclose(circles);
 
       return {
         type: 'group',
         focus: 'self',
-        children: circles.map(circle => {
-          return {
-            type: 'circle',
-            autoBatch: true,
-            shape: {
-              cx: cx + circle.x,
-              cy: cy + circle.y,
-              r: circle.r
-            },
-            style: {
-              fill: defaultPalette[idx % defaultPalette.length]
-            }
-          };
-        })
+        children: circles
+          .map(circle => {
+            return {
+              type: 'circle',
+              autoBatch: true,
+              shape: {
+                cx: cx + circle.x,
+                cy: cy + circle.y,
+                r: circle.r
+              },
+              style: {
+                fill: defaultPalette[idx % defaultPalette.length]
+              }
+            };
+          })
+          .concat([
+            {
+              type: 'circle',
+              morph: false,
+              shape: {
+                cx: cx,
+                cy: cy,
+                r
+              },
+              style: {
+                stroke: '#eee',
+                fill: 'none'
+              }
+            } as any
+          ])
       };
     }
   }
