@@ -1,7 +1,7 @@
 // Parliament chart
 import { EChartsOption } from 'echarts';
 import pieData from './data/pieData';
-import Scene from './Scene';
+import Scene from '../Scene';
 
 function project3dcoords(
   x: number,
@@ -282,7 +282,7 @@ const waveOption: EChartsOption[] = [
 
 export default new Scene({
   option: waveOption,
-  title: 'Highly Customized Particles Animation',
+  title: 'Customized Particles Animation',
   background: 'orange',
   duration: [700, 500, 1000, 500, 5000, 1500, 500],
 });

@@ -1,7 +1,7 @@
 import { EChartsOption } from 'echarts';
 import { darkPalette, defaultPalette } from './common/colorPalette';
 import pieData from './data/pieData';
-import Scene from './Scene';
+import Scene from '../Scene';
 
 const barPolar: EChartsOption = {
   angleAxis: {

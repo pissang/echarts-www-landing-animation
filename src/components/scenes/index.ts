@@ -7,6 +7,8 @@ import wave from './wave';
 import barPolar from './barPolar';
 import barRacing from './barRacing';
 import lineRacing from './lineRacing';
+import heatmap from './heatmap';
+import heatmapScatter from './heatmapScatter';
 
 export default [
   pieEntry,
@@ -18,4 +20,6 @@ export default [
   wave,
   lineRacing,
   barRacing,
+  heatmap,
+  heatmapScatter,
 ];

@@ -1,6 +1,10 @@
 <template>
-  <div id="stage-viewport" ref="containerRef"></div>
-  <div id="timeline">
+  <div
+    id="stage-viewport"
+    :class="currentScene?.isDark() ? 'dark' : ''"
+    ref="containerRef"
+  ></div>
+  <div id="timeline" :class="currentScene?.isDark() ? 'dark' : ''">
     <div id="checkpoints">
       <div
         v-for="idx in sceneIndices"
@@ -8,8 +12,12 @@
         @click="playIndex = idx"
       ></div>
     </div>
-    <div id="stage-title">
-      {{ (currentScene && currentScene.getTitle()) || '' }}
+    <div
+      id="stage-title"
+      :class="currentScene?.isDark() ? 'dark' : ''"
+      :style="currentScene?.getTitleStyle() || ''"
+    >
+      {{ currentScene?.getTitle() || '' }}
     </div>
   </div>
 </template>
@@ -19,13 +27,13 @@ import { ref, onMounted, shallowRef, watch } from 'vue';
 
 import * as echarts from 'echarts';
 import definedScenes from './scenes/index';
-import Scene from './scenes/Scene';
+import Scene from './Scene';
 import type { ECharts } from 'echarts';
 
 const scenes = shallowRef<Scene[]>(definedScenes);
 const sceneIndices = ref(scenes.value.map((scene, idx) => idx));
 
-const playIndex = ref(0);
+const playIndex = ref(-1);
 const chart = shallowRef<ECharts | null | undefined>(null);
 const containerRef = ref<HTMLElement | null | undefined>(null);
 
@@ -102,6 +110,10 @@ onMounted(() => {
   font-family: 'Oswald', sans-serif;
 }
 
+#stage-title.dark {
+  color: #fff;
+}
+
 #timeline {
   position: absolute;
   bottom: 0;
@@ -119,9 +131,12 @@ onMounted(() => {
   background-color: black;
   opacity: 0.5;
 
-  @apply rounded-full w-2 h-2 ml-2 mr-2;
+  @apply rounded-full w-2 h-2 ml-1 mr-1;
   @apply cursor-pointer;
   @apply transition-transform;
+}
+#timeline.dark .checkpoint {
+  background-color: #fff;
 }
 
 #timeline .checkpoint.current,

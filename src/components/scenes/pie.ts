@@ -1,6 +1,6 @@
 import { EChartsOption } from 'echarts';
 import pieData from './data/pieData';
-import Scene from './Scene';
+import Scene from '../Scene';
 
 const pieOption: EChartsOption[] = [
   {

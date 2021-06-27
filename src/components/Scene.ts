@@ -7,7 +7,10 @@ class Scene {
   // One scene may have mulitple options. each option will use merge mode to simplify the option code.
   private _options: EChartsOption[];
   private _durations: number[];
+
   private _title: string;
+  private _titleStyle: string;
+  private _dark: boolean;
   private _background: string;
 
   private _currentIndex: number = 0;
@@ -19,11 +22,15 @@ class Scene {
     duration: number | number[];
     background?: string;
     title?: string;
+    titleStyle?: string;
+    dark?: boolean;
   }) {
     this._options = convertToArray(opts.option);
     this._durations = convertToArray(opts.duration);
     this._title = opts.title || '';
+    this._titleStyle = opts.titleStyle || '';
     this._background = opts.background || '';
+    this._dark = opts.dark || false;
   }
 
   getDuration() {
@@ -38,6 +45,14 @@ class Scene {
 
   getTitle() {
     return this._title;
+  }
+
+  getTitleStyle() {
+    return this._titleStyle;
+  }
+
+  isDark() {
+    return this._dark;
   }
 
   play(chart: ECharts, container: HTMLElement) {

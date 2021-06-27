@@ -1,6 +1,6 @@
 import { EChartsOption } from 'echarts';
 import { darkPalette, defaultPalette } from './common/colorPalette';
-import Scene from './Scene';
+import Scene from '../Scene';
 import * as covidData from './data/covidData';
 
 const barRaceOptions: EChartsOption[] = [];
@@ -39,10 +39,8 @@ for (var n = 50; n < covidData.days.length; n++) {
           show: false,
         },
         axisLabel: {
-          textStyle: {
-            fontSize: 14,
-            color: '#fff',
-          },
+          fontSize: 14,
+          color: '#fff',
           interval: 0,
         },
         axisLine: {
