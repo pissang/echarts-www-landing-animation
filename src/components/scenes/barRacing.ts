@@ -84,6 +84,6 @@ for (var n = 50; n < covidData.days.length; n++) {
 export default new Scene({
   option: barRaceOptions,
   duration: 1000,
-  title: 'Bar Chart Racing',
+  title: 'Racing Bar Chart',
   background: 'orange',
 });

@@ -66,15 +66,14 @@ function playCurrentScene() {
 onMounted(() => {
   // Init chart
   chart.value = echarts.init(containerRef.value!);
-  window.onresize = function() {
+  window.onresize = function () {
     chart.value!.resize();
   };
-  window.onhashchange = function() {
+  window.onhashchange = function () {
     getIndexFromHash();
   };
 
   getIndexFromHash();
-  playCurrentScene();
 });
 </script>
 

@@ -6,6 +6,7 @@ import bar from './bar';
 import wave from './wave';
 import barPolar from './barPolar';
 import barRacing from './barRacing';
+import lineRacing from './lineRacing';
 
 export default [
   pieEntry,
@@ -15,5 +16,6 @@ export default [
   bar,
   barPolar,
   wave,
+  lineRacing,
   barRacing,
 ];

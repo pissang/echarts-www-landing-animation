@@ -73,9 +73,9 @@ class Scene {
       this._durations[this._currentIndex] ||
       this._durations[this._durations.length - 1];
     // Play next scene.
-    this._timeout = (setTimeout(() => {
+    this._timeout = setTimeout(() => {
       this._playCurrent(chart, container, false);
-    }, duration) as unknown) as number;
+    }, duration) as unknown as number;
 
     this._currentIndex++;
   }

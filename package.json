@@ -10,7 +10,6 @@
     "@vue/compiler-sfc": "^3.0.11",
     "autoprefixer": "^10.2.6",
     "chalk": "^3.0.0",
-    "echarts-gl": "^2.0.5",
     "fs-extra": "^8.1.0",
     "postcss": "^8.3.5",
     "postcss-import": "^14.0.2",
@@ -23,8 +22,9 @@
   },
   "dependencies": {
     "d3-hierarchy": "^3.0.1",
-    "echarts": "npm:echarts-nightly@^5.1.3-dev.20210625",
     "vue": "^3.0.11",
+    "echarts": "npm:echarts-nightly@^5.1.3-dev.20210626",
+    "echarts-gl": "^2.0.5",
     "vue-i18n": "^9.1.6"
   }
 }

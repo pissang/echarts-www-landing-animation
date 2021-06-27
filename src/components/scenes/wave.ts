@@ -282,7 +282,7 @@ const waveOption: EChartsOption[] = [
 
 export default new Scene({
   option: waveOption,
-  title: 'Particles by Custom Series',
+  title: 'Highly Customized Particles Animation',
   background: 'orange',
   duration: [700, 500, 1000, 500, 5000, 1500, 500],
 });
