@@ -39,6 +39,9 @@ const option: EChartsOption = {
       levels: [
         {},
         {
+          itemStyle: {
+            borderRadius: [5, 0],
+          },
           label: {
             show: true,
             minAngle: 10,

@@ -12,6 +12,7 @@ import heatmapScatter from './heatmapScatter';
 import treemap from './treemap';
 import treemapComplexStyle from './treemapComplexStyle';
 import sunburst from './sunburst';
+import circlePacking from './circlePacking';
 
 export default [
   pieEntry,
@@ -27,5 +28,6 @@ export default [
   heatmapScatter,
   treemap,
   treemapComplexStyle,
+  circlePacking,
   sunburst,
 ];

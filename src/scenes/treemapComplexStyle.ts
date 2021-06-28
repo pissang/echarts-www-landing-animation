@@ -96,5 +96,6 @@ export default new Scene({
   title: 'Customize to Complex Style',
   option,
   duration: 3000,
-  background: 'purple',
+  dark: true,
+  background: '#001122',
 });
