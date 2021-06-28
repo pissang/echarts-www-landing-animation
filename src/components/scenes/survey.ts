@@ -5,7 +5,7 @@ import { packSiblings, packEnclose } from 'd3-hierarchy';
 import pieData from './data/pieData';
 import pieLayout from './common/pieLayout';
 import { layoutSector } from './common/parliamentLayout';
-import { defaultPalette } from './common/colorPalette';
+import { defaultColorPalette } from './common/style';
 
 const angles: number[] = pieLayout(pieData, -Math.PI / 2, Math.PI * 2);
 const radius = ['30%', '80%'];
@@ -73,7 +73,7 @@ const surveyOption: EChartsOption = {
                 r: circle.r,
               },
               style: {
-                fill: defaultPalette[idx % defaultPalette.length],
+                fill: defaultColorPalette[idx % defaultColorPalette.length],
               },
             };
           })

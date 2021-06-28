@@ -1,5 +1,5 @@
 import { EChartsOption } from 'echarts';
-import { defaultPalette } from './common/colorPalette';
+import { defaultColorPalette } from './common/style';
 import pieData from './data/pieData';
 import Scene from '../Scene';
 
@@ -29,7 +29,7 @@ const bar: EChartsOption = {
           value: item.value,
           groupId: item.name,
           itemStyle: {
-            color: defaultPalette[idx % defaultPalette.length],
+            color: defaultColorPalette[idx % defaultColorPalette.length],
           },
         };
       }),

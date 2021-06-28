@@ -9,6 +9,8 @@ import barRacing from './barRacing';
 import lineRacing from './lineRacing';
 import heatmap from './heatmap';
 import heatmapScatter from './heatmapScatter';
+import treemap from './treemap';
+import treemapComplexStyle from './treemapComplexStyle';
 
 export default [
   pieEntry,
@@ -22,4 +24,6 @@ export default [
   barRacing,
   heatmap,
   heatmapScatter,
+  treemap,
+  treemapComplexStyle,
 ];

@@ -1,5 +1,9 @@
 import { EChartsOption } from 'echarts';
-import { darkPalette, defaultPalette } from './common/colorPalette';
+import {
+  darkColorPalette,
+  defaultColorPalette,
+  defaultFont,
+} from './common/style';
 import Scene from '../Scene';
 import * as covidData from './data/covidData';
 
@@ -17,7 +21,7 @@ for (var n = 50; n < covidData.days.length; n++) {
       top: 10,
     },
     textStyle: {
-      fontFamily: "'Oswald', sans-serif",
+      fontFamily: defaultFont,
     },
     dataset: {
       source: res,

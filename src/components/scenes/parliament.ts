@@ -1,6 +1,6 @@
 // Parliament chart
 import { EChartsOption } from 'echarts';
-import { defaultPalette } from './common/colorPalette';
+import { defaultColorPalette } from './common/style';
 import { layoutSector } from './common/parliamentLayout';
 import pieLayout from './common/pieLayout';
 import pieData from './data/pieData';
@@ -51,7 +51,7 @@ const paliamentOption: EChartsOption = {
               r: size / 2,
             },
             style: {
-              fill: defaultPalette[idx % defaultPalette.length],
+              fill: defaultColorPalette[idx % defaultColorPalette.length],
             },
           };
         }),

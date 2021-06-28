@@ -6,6 +6,7 @@ import {
 
 import lineRacingData from './data/life-expectancy-table.json';
 import Scene from '../Scene';
+import { defaultFont } from './common/style';
 
 // var countries = ['Australia', 'Canada', 'China', 'Cuba', 'Finland', 'France', 'Germany', 'Iceland', 'India', 'Japan', 'North Korea', 'South Korea', 'New Zealand', 'Norway', 'Poland', 'Russia', 'Turkey', 'United Kingdom', 'United States'];
 var countries = [
@@ -42,7 +43,10 @@ countries.forEach(function (country) {
     name: country,
     endLabel: {
       show: true,
-      color: 'rgba(255, 255, 255, 0.6)',
+      color: '#000',
+      padding: 3,
+      backgroundColor: 'rgba(255,255,255,0.8)',
+      borderRadius: 3,
       formatter: function (params) {
         return params.value[3] + ': ' + params.value[0];
       },
@@ -74,6 +78,9 @@ const option: EChartsOption = {
       source: lineRacingData,
     } as DatasetComponentOption,
   ].concat(datasetWithFilters),
+  textStyle: {
+    fontFamily: defaultFont,
+  },
   xAxis: {
     type: 'category',
     nameLocation: 'middle',
