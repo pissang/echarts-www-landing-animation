@@ -18,7 +18,7 @@ const bar: EChartsOption = {
       animationDurationUpdate: 1000,
       universalTransition: {
         enabled: true,
-        seriesKey: 'first',
+        seriesKey: 'point',
         delay: (idx, count) => {
           return count === 1 ? 0 : (1 - idx / count) * 2000;
         },

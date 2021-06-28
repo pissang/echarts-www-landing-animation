@@ -17,7 +17,7 @@ const pieOption: EChartsOption[] = [
         },
         universalTransition: {
           enabled: true,
-          seriesKey: 'first',
+          seriesKey: 'point',
         },
         animationDurationUpdate: 1000,
         data: pieData,

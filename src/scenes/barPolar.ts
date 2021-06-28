@@ -29,7 +29,7 @@ const barPolar: EChartsOption = {
       animationDurationUpdate: 1000,
       universalTransition: {
         enabled: true,
-        seriesKey: 'first',
+        seriesKey: 'point',
       },
       itemStyle: {},
       data: pieData.map((item, idx) => {

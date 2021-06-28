@@ -52,7 +52,7 @@ const waveOption: EChartsOption[] = [
       coordinateSystem: undefined,
       universalTransition: {
         enabled: true,
-        seriesKey: 'first',
+        seriesKey: 'point',
       },
       animationThreshold: 1e5,
       animationDurationUpdate: 500,

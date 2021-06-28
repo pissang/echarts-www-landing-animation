@@ -21,7 +21,7 @@ const surveyOption: EChartsOption = {
     coordinateSystem: undefined,
     universalTransition: {
       enabled: true,
-      seriesKey: 'first',
+      seriesKey: 'point',
       delay(idx, count) {
         return (idx / count) * 1000;
       },

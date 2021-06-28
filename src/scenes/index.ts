@@ -8,7 +8,7 @@ import barPolar from './barPolar';
 import barRacing from './barRacing';
 import lineRacing from './lineRacing';
 import heatmap from './heatmap';
-import heatmapScatter from './heatmapScatter';
+import heatmapScatter from './scatterShape';
 import treemap from './treemap';
 import treemapComplexStyle from './treemapComplexStyle';
 import sunburst from './sunburst';
@@ -24,7 +24,7 @@ export default [
   wave,
   lineRacing,
   barRacing,
-  heatmap,
+  // heatmap,
   heatmapScatter,
   treemap,
   treemapComplexStyle,

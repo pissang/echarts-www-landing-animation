@@ -17,7 +17,7 @@ const paliamentOption: EChartsOption = {
     coordinateSystem: undefined,
     universalTransition: {
       enabled: true,
-      seriesKey: 'first',
+      seriesKey: 'point',
     },
     animationDurationUpdate: 1000,
     renderItem(params, api) {
