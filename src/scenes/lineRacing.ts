@@ -5,7 +5,7 @@ import {
 } from 'echarts';
 
 import lineRacingData from './data/life-expectancy-table.json';
-import Scene from '../Scene';
+import Scene from '../components/Scene';
 import { defaultFont } from './common/style';
 
 // var countries = ['Australia', 'Canada', 'China', 'Cuba', 'Finland', 'France', 'Germany', 'Iceland', 'India', 'Japan', 'North Korea', 'South Korea', 'New Zealand', 'Norway', 'Poland', 'Russia', 'Turkey', 'United Kingdom', 'United States'];

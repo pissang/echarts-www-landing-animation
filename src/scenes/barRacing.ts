@@ -4,7 +4,7 @@ import {
   defaultColorPalette,
   defaultFont,
 } from './common/style';
-import Scene from '../Scene';
+import Scene from '../components/Scene';
 import * as covidData from './data/covidData';
 
 const barRaceOptions: EChartsOption[] = [];

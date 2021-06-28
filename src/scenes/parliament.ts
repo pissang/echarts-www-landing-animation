@@ -4,7 +4,7 @@ import { defaultColorPalette } from './common/style';
 import { layoutSector } from './common/parliamentLayout';
 import pieLayout from './common/pieLayout';
 import pieData from './data/pieData';
-import Scene from '../Scene';
+import Scene from '../components/Scene';
 
 const angles: number[] = pieLayout(pieData, -Math.PI / 2, Math.PI * 2);
 

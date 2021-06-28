@@ -26,7 +26,7 @@
 import { ref, onMounted, shallowRef, watch } from 'vue';
 
 import * as echarts from 'echarts';
-import definedScenes from './scenes/index';
+import definedScenes from '../scenes/index';
 import Scene from './Scene';
 import type { ECharts } from 'echarts';
 

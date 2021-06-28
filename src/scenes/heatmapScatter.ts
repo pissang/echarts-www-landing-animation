@@ -1,5 +1,5 @@
 import { EChartsOption } from 'echarts';
-import Scene from '../Scene';
+import Scene from '../components/Scene';
 import { heatmapXData, heatmapYData, heatmapNoiseData } from './heatmap';
 
 const symbolSize = Math.min(window.innerWidth, window.innerHeight) / 20;

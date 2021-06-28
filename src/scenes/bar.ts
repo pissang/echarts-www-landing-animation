@@ -1,7 +1,7 @@
 import { EChartsOption } from 'echarts';
 import { defaultColorPalette } from './common/style';
 import pieData from './data/pieData';
-import Scene from '../Scene';
+import Scene from '../components/Scene';
 
 const bar: EChartsOption = {
   xAxis: {

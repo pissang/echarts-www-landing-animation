@@ -1,29 +1,26 @@
 import { EChartsOption } from 'echarts';
-import Scene from '../Scene';
+import Scene from '../components/Scene';
 import { defaultColorPalette2, defaultFont } from './common/style';
-import data from './data/obama-budget.json';
+import data from './data/echarts-package-size.json';
 
 const option: EChartsOption = {
   color: defaultColorPalette2,
   series: [
     {
-      name: 'option',
       type: 'treemap',
       left: 10,
       top: 10,
       bottom: 10,
       right: 10,
       animationDurationUpdate: 1000,
+      animationThreshold: 3000,
       roam: false,
       nodeClick: undefined,
-      data: data,
+      data: data.children,
+      leafDepth: 2,
       label: {
         show: true,
         fontFamily: defaultFont,
-      },
-      itemStyle: {
-        borderWidth: 0.3,
-        borderColor: 'rgba(255,255,255,0.5)',
       },
       universalTransition: {
         enabled: true,
@@ -39,6 +36,6 @@ const option: EChartsOption = {
 export default new Scene({
   title: 'Treemap',
   option,
-  duration: 2000,
+  duration: 3000,
   background: 'purple',
 });

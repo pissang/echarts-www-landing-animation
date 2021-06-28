@@ -1,5 +1,5 @@
 import { EChartsOption } from 'echarts';
-import Scene from '../Scene';
+import Scene from '../components/Scene';
 import { seed, perlin2 } from './data/simplexNoise';
 
 export const heatmapXData: number[] = [];
