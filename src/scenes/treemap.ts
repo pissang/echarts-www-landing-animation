@@ -10,7 +10,7 @@ const option: (EChartsOption | GetOption)[] = [
     series: [
       {
         type: 'treemap',
-        name: 'root',
+        name: 'echarts',
         left: 10,
         top: 10,
         bottom: 10,
@@ -44,7 +44,7 @@ const option: (EChartsOption | GetOption)[] = [
   (chart: ECharts) => {
     chart.dispatchAction({
       type: 'treemapZoomToNode',
-      targetNode: 'root',
+      targetNode: 'echarts',
     });
   },
 ];

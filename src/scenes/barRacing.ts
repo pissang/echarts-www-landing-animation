@@ -1,9 +1,5 @@
 import { EChartsOption } from 'echarts';
-import {
-  darkColorPalette,
-  defaultColorPalette,
-  defaultFont,
-} from './common/style';
+import { defaultFont } from './common/style';
 import Scene from '../components/Scene';
 import * as covidData from './data/covidData';
 
@@ -17,8 +13,9 @@ for (var n = 50; n < covidData.days.length; n++) {
 
   barRaceOptions.push({
     grid: {
-      left: 100,
+      left: 120,
       top: 10,
+      bottom: 30,
     },
     textStyle: {
       fontFamily: defaultFont,
@@ -87,5 +84,6 @@ export default new Scene({
   option: barRaceOptions,
   duration: 1000,
   title: 'Racing Bar Chart',
+  titleStyle: 'right: 30px; left:auto',
   background: 'orange',
 });

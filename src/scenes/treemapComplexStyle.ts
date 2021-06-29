@@ -8,6 +8,7 @@ const option: EChartsOption = {
   series: [
     {
       type: 'treemap',
+      name: 'echarts',
       left: 10,
       top: 10,
       bottom: 10,
