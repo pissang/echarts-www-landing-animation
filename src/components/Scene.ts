@@ -3,9 +3,11 @@ import { ECharts, EChartsOption } from 'echarts';
 function convertToArray<T>(val: T | T[]): T[] {
   return Array.isArray(val) ? val : [val];
 }
+
+export type GetOption = (chart: ECharts) => EChartsOption | undefined | void;
+
 class Scene {
-  // One scene may have mulitple options. each option will use merge mode to simplify the option code.
-  private _options: EChartsOption[];
+  private _options: (GetOption | EChartsOption)[];
   private _durations: number[];
 
   private _title: string;
@@ -18,7 +20,11 @@ class Scene {
   private _timeout: number = 0;
 
   constructor(opts: {
-    option: EChartsOption | EChartsOption[];
+    /**
+     * Option can be an callback to generate dynamically. We can also execute dispatchAction and not return new option
+     * Each option in one scene will use merge mode to simplify the option code.
+     */
+    option: GetOption | EChartsOption | (GetOption | EChartsOption)[];
     duration: number | number[];
     background?: string;
     title?: string;
@@ -76,7 +82,15 @@ class Scene {
     if (this._currentIndex >= this._options.length) {
       return;
     }
-    chart.setOption(this._options[this._currentIndex], notMerge);
+    const option = this._options[this._currentIndex];
+    if (typeof option === 'function') {
+      const ret = option(chart);
+      if (ret) {
+        chart.setOption(ret, notMerge);
+      }
+    } else {
+      chart.setOption(option, notMerge);
+    }
     const bg = this._background;
     if (bg) {
       container.style.background = bg;
