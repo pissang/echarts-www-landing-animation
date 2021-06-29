@@ -63,6 +63,9 @@ watch([scenes, playIndex], () => {
 });
 
 function playCurrentScene() {
+  if (!chart.value) {
+    return;
+  }
   if (currentScene.value) {
     currentScene.value.stop();
   }
@@ -75,7 +78,10 @@ onMounted(() => {
   // Init chart
   chart.value = echarts.init(containerRef.value!);
   window.onresize = function () {
-    chart.value!.resize();
+    chart.value?.resize();
+    // Replay current scene.
+    chart.value?.clear();
+    playCurrentScene();
   };
   window.onhashchange = function () {
     getIndexFromHash();

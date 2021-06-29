@@ -90,6 +90,14 @@ const surveyOption: EChartsOption = {
                 stroke: '#eee',
                 fill: 'none',
               },
+              // textContent: {
+              //   style: {
+              //     text: params.name,
+              //   },
+              // },
+              // textConfig: {
+              //   position: 'bottom',
+              // },
             } as any,
           ]),
       };

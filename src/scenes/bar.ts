@@ -1,5 +1,5 @@
 import { EChartsOption } from 'echarts';
-import { defaultColorPalette } from './common/style';
+import { defaultColorPalette, defaultFont } from './common/style';
 import pieData from './data/pieData';
 import Scene from '../components/Scene';
 
@@ -8,6 +8,9 @@ const bar: EChartsOption = {
     data: pieData.map((item) => item.name),
   },
   yAxis: {},
+  textStyle: {
+    fontFamily: defaultFont,
+  },
   series: [
     {
       type: 'bar',
@@ -20,7 +23,7 @@ const bar: EChartsOption = {
         enabled: true,
         seriesKey: 'point',
         delay: (idx, count) => {
-          return count === 1 ? 0 : (1 - idx / count) * 2000;
+          return count === 1 ? 0 : (1 - idx / count) * 1000;
         },
       },
       itemStyle: {},
@@ -40,5 +43,6 @@ const bar: EChartsOption = {
 export default new Scene({
   option: bar,
   title: 'Basic Bar Chart',
-  duration: 3500,
+  // titleStyle: 'right:10px;top:20px;left:auto;bottom:auto;',
+  duration: 2500,
 });

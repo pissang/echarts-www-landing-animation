@@ -14,6 +14,7 @@ import sunburst from './sunburst';
 import circlePacking from './circlePacking';
 import calendarHeatmap from './calendarHeatmap';
 import calendarScatter from './calendarScatter';
+import gaugeCar from './gaugeCar';
 
 export default [
   pieEntry,
@@ -33,4 +34,5 @@ export default [
   sunburst,
   calendarHeatmap,
   calendarScatter,
+  gaugeCar,
 ];
