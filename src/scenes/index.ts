@@ -7,12 +7,13 @@ import wave from './wave';
 import barPolar from './barPolar';
 import barRacing from './barRacing';
 import lineRacing from './lineRacing';
-import heatmap from './heatmap';
-import heatmapScatter from './scatterShape';
+import scatterShape from './scatterShape';
 import treemap from './treemap';
 import treemapComplexStyle from './treemapComplexStyle';
 import sunburst from './sunburst';
 import circlePacking from './circlePacking';
+import calendarHeatmap from './calendarHeatmap';
+import calendarScatter from './calendarScatter';
 
 export default [
   pieEntry,
@@ -22,12 +23,14 @@ export default [
   bar,
   barPolar,
   wave,
+  scatterShape,
   lineRacing,
   barRacing,
   // heatmap,
-  heatmapScatter,
   treemap,
   treemapComplexStyle,
   circlePacking,
   sunburst,
+  calendarHeatmap,
+  calendarScatter,
 ];

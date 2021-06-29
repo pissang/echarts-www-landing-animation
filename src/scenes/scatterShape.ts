@@ -1,6 +1,6 @@
 import { EChartsOption } from 'echarts';
 import Scene from '../components/Scene';
-import { heatmapXData, heatmapYData, heatmapNoiseData } from './heatmap';
+import { noiseXData, noiseYData, noiseData } from './data/noiseData';
 
 const symbolSize = Math.min(window.innerWidth, window.innerHeight) / 20;
 
@@ -21,14 +21,14 @@ const option: EChartsOption[] = [
       type: 'category',
       min: 10,
       max: 20,
-      data: heatmapXData,
+      data: noiseXData,
     },
     yAxis: {
       show: false,
       type: 'category',
       min: 10,
       max: 20,
-      data: heatmapYData,
+      data: noiseYData,
     },
     visualMap: {
       show: false,
@@ -41,7 +41,7 @@ const option: EChartsOption[] = [
     series: [
       {
         type: 'scatter',
-        data: heatmapNoiseData,
+        data: noiseData,
         symbol: 'roundRect',
         universalTransition: {
           enabled: true,
