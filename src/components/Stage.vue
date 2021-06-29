@@ -12,13 +12,13 @@
         @click="playIndex = idx"
       ></div>
     </div>
-    <div
-      id="stage-title"
-      :class="currentScene?.isDark() ? 'dark' : ''"
-      :style="currentScene?.getTitleStyle() || ''"
-    >
-      {{ currentScene?.getTitle() || '' }}
-    </div>
+  </div>
+  <div
+    id="stage-title"
+    :class="currentScene?.isDark() ? 'dark' : ''"
+    :style="currentScene?.getTitleStyle() || ''"
+  >
+    {{ currentScene?.getTitle() || '' }}
   </div>
 </template>
 

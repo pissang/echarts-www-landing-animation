@@ -74,7 +74,7 @@ const waveOption: EChartsOption[] = [
             // height: size
           },
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)',
+            fill: 'rgba(255, 255, 255, 0.7)',
           },
         };
       },
@@ -107,7 +107,7 @@ const waveOption: EChartsOption[] = [
           },
           transition: ['shape'],
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)',
+            fill: 'rgba(255, 255, 255, 0.7)',
           },
         };
       },
@@ -134,7 +134,7 @@ const waveOption: EChartsOption[] = [
           },
           transition: ['shape'],
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)',
+            fill: 'rgba(255, 255, 255, 0.7)',
           },
         };
       },
@@ -169,7 +169,7 @@ const waveOption: EChartsOption[] = [
           },
           transition: ['shape'],
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)',
+            fill: 'rgba(255, 255, 255, 0.7)',
           },
         };
       },
@@ -203,7 +203,7 @@ const waveOption: EChartsOption[] = [
           },
           transition: 'extra',
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)',
+            fill: 'rgba(255, 255, 255, 0.7)',
           },
           during(duringApi) {
             const elapsedTime = duringApi.getExtra('percent') * 5;
@@ -246,7 +246,7 @@ const waveOption: EChartsOption[] = [
           },
           transition: ['shape'],
           style: {
-            fill: 'rgba(255, 255, 255, 0.5)',
+            fill: 'rgba(255, 255, 255, 0.7)',
           },
         };
       },
@@ -272,7 +272,7 @@ const waveOption: EChartsOption[] = [
           style: {
             transition: ['opacity'],
             opacity: 0,
-            fill: 'rgba(255, 255, 255, 0.5)',
+            fill: 'rgba(255, 255, 255, 0.7)',
           },
         };
       },
@@ -283,6 +283,6 @@ const waveOption: EChartsOption[] = [
 export default new Scene({
   option: waveOption,
   title: 'Customized Particles Animation',
-  background: 'orange',
+  background: 'linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)',
   duration: [700, 500, 1000, 500, 5000, 1500, 500],
 });

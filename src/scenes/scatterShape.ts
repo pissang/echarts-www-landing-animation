@@ -1,11 +1,9 @@
 import { EChartsOption } from 'echarts';
-import Scene from '../components/Scene';
+import Scene, { GetOption } from '../components/Scene';
 import { noiseXData, noiseYData, noiseData } from './data/noiseData';
 
-const symbolSize = Math.min(window.innerWidth, window.innerHeight) / 20;
-
-const option: EChartsOption[] = [
-  {
+const option: (EChartsOption | GetOption)[] = [
+  (chart) => ({
     // tooltip: {
     //   position: 'top',
     //   borderWidth: 0,
@@ -17,7 +15,6 @@ const option: EChartsOption[] = [
       bottom: 0,
     },
     xAxis: {
-      show: false,
       type: 'category',
       min: 10,
       max: 20,
@@ -35,7 +32,10 @@ const option: EChartsOption[] = [
       min: 0,
       max: 1,
       inRange: {
-        symbolSize: [symbolSize / 2, symbolSize],
+        symbolSize: [
+          Math.min(chart.getWidth(), chart.getHeight()) / 20,
+          Math.min(chart.getWidth(), chart.getHeight()) / 15,
+        ],
       },
     },
     series: [
@@ -48,7 +48,9 @@ const option: EChartsOption[] = [
           seriesKey: 'second',
         },
         itemStyle: {
-          color: 'orange',
+          color: '#fff',
+          borderColor: '#001122',
+          borderWidth: 2,
           // shadowBlur: 3,
           // shadowOffsetX: 3,
           // shadowOffsetY: 3,
@@ -57,7 +59,7 @@ const option: EChartsOption[] = [
         },
       },
     ],
-  },
+  }),
 
   {
     series: [
@@ -85,6 +87,8 @@ const option: EChartsOption[] = [
       textStyle: {
         fontSize: 50,
         color: '#fff',
+        textBorderColor: '#001122',
+        textBorderWidth: 10,
         fontFamily: "'Oswald', sans-serif",
       },
     },
@@ -121,5 +125,5 @@ export default new Scene({
   duration: 800,
   title: 'Scatter Shapes',
   dark: true,
-  background: 'purple',
+  background: 'linear-gradient(to top, #5f72bd 0%, #9b23ea 100%)',
 });

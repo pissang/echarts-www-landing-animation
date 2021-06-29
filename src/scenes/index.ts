@@ -3,7 +3,7 @@ import pie from './pie';
 import parliament from './parliament';
 import survey from './survey';
 import bar from './bar';
-import wave from './wave';
+import wave from './particles';
 import barPolar from './barPolar';
 import barRacing from './barRacing';
 import lineRacing from './lineRacing';

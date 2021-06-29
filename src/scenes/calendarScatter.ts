@@ -73,6 +73,8 @@ const option: EChartsOption[] = [
         fontFamily: defaultFont,
       },
     },
+    animationEasingUpdate: 'linear',
+    animationDurationUpdate: 1000,
     series: [
       {
         type: 'scatter',

@@ -48,10 +48,11 @@ const surveyOption: EChartsOption = {
       const cx = cellWidth * (idx % columnCount) + cellWidth / 2;
       const cy = cellHeight * Math.floor(idx / columnCount) + cellHeight / 2;
 
+      const newSize = cellWidth / 10;
       const circles: { x: number; y: number; r: number }[] = packSiblings(
         points.map((pt) => {
           return {
-            r: (Math.pow(Math.random(), 10) * size) / 2 + size / 3,
+            r: (Math.pow(Math.random(), 10) * newSize) / 2 + newSize / 4,
           };
         })
         // .sort((a, b) => b.r - a.r)
@@ -62,44 +63,35 @@ const surveyOption: EChartsOption = {
       return {
         type: 'group',
         focus: 'self',
-        children: circles
-          .map((circle) => {
-            return {
-              type: 'circle',
-              autoBatch: true,
-              shape: {
-                cx: cx + circle.x,
-                cy: cy + circle.y,
-                r: circle.r,
-              },
-              style: {
-                fill: defaultColorPalette[idx % defaultColorPalette.length],
-              },
-            };
-          })
-          .concat([
-            {
-              type: 'circle',
-              morph: false,
-              shape: {
-                cx: cx,
-                cy: cy,
-                r,
-              },
-              style: {
-                stroke: '#eee',
-                fill: 'none',
-              },
-              // textContent: {
-              //   style: {
-              //     text: params.name,
-              //   },
-              // },
-              // textConfig: {
-              //   position: 'bottom',
-              // },
-            } as any,
-          ]),
+        children: circles.map((circle) => {
+          return {
+            type: 'circle',
+            autoBatch: true,
+            shape: {
+              cx: cx + circle.x,
+              cy: cy + circle.y,
+              r: circle.r,
+            },
+            style: {
+              fill: defaultColorPalette[idx % defaultColorPalette.length],
+            },
+          };
+        }),
+        // .concat([
+        //   {
+        //     type: 'circle',
+        //     morph: false,
+        //     shape: {
+        //       cx: cx,
+        //       cy: cy,
+        //       r,
+        //     },
+        //     style: {
+        //       stroke: '#eee',
+        //       fill: 'none',
+        //     },
+        //   } as any,
+        // ]),
       };
     },
   },

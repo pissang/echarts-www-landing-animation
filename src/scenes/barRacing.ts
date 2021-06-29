@@ -84,6 +84,7 @@ export default new Scene({
   option: barRaceOptions,
   duration: 1000,
   title: 'Racing Bar Chart',
+  background: 'linear-gradient(to top, #f77062 0%, #fe5196 100%)',
+  dark: true,
   titleStyle: 'right: 30px; left:auto',
-  background: 'orange',
 });
