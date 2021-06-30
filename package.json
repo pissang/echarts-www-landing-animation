@@ -24,9 +24,13 @@
   },
   "dependencies": {
     "d3-hierarchy": "^3.0.1",
-    "vue": "^3.0.11",
     "echarts": "npm:echarts-nightly@^5.1.3-dev.20210626",
     "echarts-gl": "^2.0.5",
+    "echarts-liquidfill": "^3.0.0",
+    "echarts-simple-transform": "^1.0.0",
+    "echarts-stat": "^1.2.0",
+    "echarts-wordcloud": "^2.0.0",
+    "vue": "^3.0.11",
     "vue-i18n": "^9.1.6"
   }
 }

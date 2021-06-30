@@ -206,7 +206,7 @@ const waveOption: EChartsOption[] = [
             fill: 'rgba(255, 255, 255, 0.7)',
           },
           during(duringApi) {
-            const elapsedTime = duringApi.getExtra('percent') * 5;
+            const elapsedTime = (duringApi.getExtra('percent') as number) * 5;
             const [x, y, z] = get3dcoords(m, n, elapsedTime);
             const [x2d, y2d] = project3dcoords(x, y, z, w, h);
             duringApi.setShape('cx', x2d);
@@ -283,6 +283,6 @@ const waveOption: EChartsOption[] = [
 export default new Scene({
   option: waveOption,
   title: 'Customized Particles Animation',
-  background: 'linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)',
+  background: 'orange',
   duration: [700, 500, 1000, 500, 5000, 1500, 500],
 });

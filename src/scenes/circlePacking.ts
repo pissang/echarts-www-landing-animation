@@ -4,38 +4,57 @@ import { defaultColorPalette2, defaultFont } from './common/style';
 import data from './data/echarts-package-size.json';
 import { pack, hierarchy } from 'd3-hierarchy';
 
+interface DataNode {
+  name: string;
+  value: number;
+  children?: DataNode[];
+}
+
+interface LayoutNode {
+  data: DataNode;
+  x: number;
+  y: number;
+  r: number;
+  depth: number;
+
+  children?: LayoutNode[];
+}
+
 const root = hierarchy(data)
-  .sum(function (d) {
+  .sum(function (d: DataNode) {
     return d.value;
   })
-  .sort(function (a, b) {
+  .sort(function (a: DataNode, b: DataNode) {
     return b.value - a.value;
   });
 
 let maxDepth = 0;
-const seriesData = root.descendants().map(function (node) {
+const seriesData = root.descendants().map(function (node: LayoutNode) {
   maxDepth = Math.max(maxDepth, node.depth);
   return [node.data.value, node.depth, node.data.name];
 });
 
 const renderItem: CustomSeriesOption['renderItem'] = (params, api) => {
   const context = params.context;
-  if (!context.layout) {
+  type ContextNodes = Record<string, { index: number; node: LayoutNode }>;
+  let contextNodes: ContextNodes = context.nodes as ContextNodes;
+
+  if (!contextNodes) {
+    contextNodes = context.nodes = {};
     pack()
       .size([api.getWidth() - 2, api.getHeight() - 2])
       .padding(3)(root);
 
-    context.nodes = {};
-    root.descendants().forEach(function (node, index) {
-      context.nodes[node.data.name] = {
+    root.descendants().forEach(function (node: LayoutNode, index: number) {
+      contextNodes[node.data.name] = {
         index: index,
         node: node,
       };
     });
   }
 
-  const nodePath = api.value(2);
-  const node = context.nodes[nodePath].node;
+  const nodePath = api.value(2) as string;
+  const node = contextNodes[nodePath].node;
   const isLeaf = !node.children || !node.children.length;
 
   const textFont = api.font({
@@ -50,7 +69,7 @@ const renderItem: CustomSeriesOption['renderItem'] = (params, api) => {
         .join('\n')
     : '';
 
-  const z2 = api.value(1) * 2;
+  const z2 = +api.value(1) * 2;
 
   const fontSize = node.r / 2;
   return {
@@ -74,13 +93,13 @@ const renderItem: CustomSeriesOption['renderItem'] = (params, api) => {
             },
             emphasis: {
               style: {
-                overflow: null,
+                overflow: undefined,
                 fontSize: Math.max(node.r / 3, 10),
                 // fill: 'red'
               },
             },
           }
-        : null,
+        : undefined,
     textConfig: {
       position: 'inside',
     },
@@ -91,7 +110,6 @@ const renderItem: CustomSeriesOption['renderItem'] = (params, api) => {
     },
     emphasis: {
       style: {
-        font: textFont,
         shadowBlur: 20,
         shadowOffsetX: 3,
         shadowOffsetY: 5,
@@ -114,7 +132,7 @@ const option: EChartsOption = {
   series: {
     type: 'custom',
     renderItem: renderItem,
-    coordinateSystem: null,
+    coordinateSystem: undefined,
     animationDurationUpdate: 1000,
     universalTransition: {
       enabled: true,
