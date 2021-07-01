@@ -166,7 +166,7 @@ onMounted(() => {
 
   transition: linear 200ms color;
 
-  z-index: 1000;
+  z-index: 1;
   font-family: 'Oswald', sans-serif;
 }
 
@@ -210,6 +210,7 @@ onMounted(() => {
 #auto-play-control {
   position: absolute;
   cursor: pointer;
+  z-index: 1000;
   @apply right-6 bottom-4 w-8 h-8;
 }
 

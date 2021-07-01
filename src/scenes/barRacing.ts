@@ -4,8 +4,8 @@ import Scene from '../components/Scene';
 import * as covidData from './data/covidData';
 
 const barRaceOptions: EChartsOption[] = [];
-
-for (var n = 50; n < covidData.days.length; n++) {
+const len = 10;
+for (var n = 50; n < 50 + len; n++) {
   var res = [];
   for (var j = 0; j < covidData.rawData[n].length; j++) {
     res.push([covidData.country[j], covidData.rawData[n][j]]);
