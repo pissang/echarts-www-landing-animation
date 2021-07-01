@@ -1,24 +1,52 @@
 <template>
   <div
-    id="stage-viewport"
+    id="stage-main"
     :class="currentScene?.isDark() ? 'dark' : ''"
-    ref="containerRef"
-  ></div>
-  <div id="timeline" :class="currentScene?.isDark() ? 'dark' : ''">
-    <div id="checkpoints">
-      <div
-        v-for="idx in sceneIndices"
-        :class="['checkpoint', idx === playIndex ? 'current' : '']"
-        @click="playIndex = idx"
-      ></div>
-    </div>
-  </div>
-  <div
-    id="stage-title"
-    :class="currentScene?.isDark() ? 'dark' : ''"
-    :style="currentScene?.getTitleStyle() || ''"
+    :style="{
+      background: (currentScene && currentScene.getBackground()) || 'none',
+    }"
   >
-    {{ currentScene?.getTitle() || '' }}
+    <div id="stage-viewport" ref="containerRef"></div>
+    <div id="timeline">
+      <div id="checkpoints">
+        <div
+          v-for="idx in sceneIndices"
+          :class="['checkpoint', idx === playIndex ? 'current' : '']"
+          @click="playIndex = idx"
+        ></div>
+      </div>
+    </div>
+    <div id="auto-play-control" @click="isAutoplay = !isAutoplay">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        v-if="!isAutoplay"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        v-else
+      >
+        <path
+          fill-rule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div id="stage-title" :style="currentScene?.getTitleStyle() || ''">
+      {{ currentScene?.getTitle() || '' }}
+    </div>
   </div>
 </template>
 
@@ -36,6 +64,7 @@ const sceneIndices = ref(scenes.value.map((scene, idx) => idx));
 const playIndex = ref(-1);
 const chart = shallowRef<ECharts | null | undefined>(null);
 const containerRef = ref<HTMLElement | null | undefined>(null);
+const isAutoplay = ref(true);
 
 const currentScene = ref<Scene | null>(null);
 
@@ -59,20 +88,43 @@ function nextScene() {
 }
 
 watch([scenes, playIndex], () => {
-  playCurrentScene();
+  currentScene.value = scenes.value[playIndex.value];
 });
 
-function playCurrentScene() {
+watch(currentScene, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    oldVal?.stop(chart.value!);
+  }
+  playCurrentScene(true);
+});
+
+function playCurrentScene(reset: boolean) {
   if (!chart.value) {
     return;
   }
-  if (currentScene.value) {
-    currentScene.value.stop();
+  if (!currentScene.value) {
+    return;
   }
-  currentScene.value = scenes.value[playIndex.value];
-  currentScene.value.play(chart.value!, containerRef.value!);
+
+  if (reset) {
+    currentScene.value.reset();
+  }
+
+  currentScene.value.play(chart.value!, () => {
+    nextScene();
+  });
+
   setIndexToHash();
 }
+
+watch(isAutoplay, (val) => {
+  if (!chart.value) {
+    return;
+  }
+  val
+    ? chart.value.getZr().animation.resume()
+    : chart.value.getZr().animation.pause();
+});
 
 onMounted(() => {
   // Init chart
@@ -81,7 +133,7 @@ onMounted(() => {
     chart.value?.resize();
     // Replay current scene.
     chart.value?.clear();
-    playCurrentScene();
+    playCurrentScene(true);
   };
   window.onhashchange = function () {
     getIndexFromHash();
@@ -94,12 +146,14 @@ onMounted(() => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 
+#stage-main {
+  position: absolute;
+  @apply left-0 top-0 h-full w-full;
+}
+
 #stage-viewport {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  @apply left-0 top-0 h-full w-full;
 
   transition: linear 200ms background;
 }
@@ -116,7 +170,7 @@ onMounted(() => {
   font-family: 'Oswald', sans-serif;
 }
 
-#stage-title.dark {
+#stage-main.dark #stage-title {
   color: #fff;
 }
 
@@ -141,7 +195,7 @@ onMounted(() => {
   @apply cursor-pointer;
   @apply transition-transform;
 }
-#timeline.dark .checkpoint {
+#stage-main.dark #timeline .checkpoint {
   background-color: #fff;
 }
 
@@ -151,5 +205,15 @@ onMounted(() => {
 }
 #timeline .checkpoint:hover {
   transform: scale(1.2);
+}
+
+#auto-play-control {
+  position: absolute;
+  cursor: pointer;
+  @apply right-6 bottom-4 w-8 h-8;
+}
+
+#stage-main.dark #auto-play-control {
+  color: #fff;
 }
 </style>

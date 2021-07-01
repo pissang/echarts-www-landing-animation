@@ -1,10 +1,44 @@
 import { ECharts, EChartsOption } from 'echarts';
+import { nextTick } from 'vue';
 
 function convertToArray<T>(val: T | T[]): T[] {
   return Array.isArray(val) ? val : [val];
 }
 
 export type GetOption = (chart: ECharts) => EChartsOption | undefined | void;
+
+type Animator = ReturnType<typeof chartSetTimeout>;
+
+function chartSetTimeout(chart: ECharts, cb: () => void, time: number) {
+  const animator = chart
+    .getZr()
+    .animation.animate({ val: 0 } as any, {
+      loop: false,
+    })
+    .when(time, {
+      val: 1,
+    })
+    .during(() => {
+      // Please don't fall sleep.
+      // TODO Can be configurable.
+      chart.getZr().wakeUp();
+    })
+    .done(() => {
+      // NOTE: Must delay the callback. Or zrender flush will invoke the chartSetTimeout callback again.
+      // TODO: This is something needs to be fixed in zrender.
+      nextTick(cb);
+    })
+    .start();
+
+  return animator;
+}
+
+function chartClearTimeout(chart: ECharts, animator?: Animator) {
+  if (!animator) {
+    return;
+  }
+  chart.getZr().animation.removeAnimator(animator);
+}
 
 class Scene {
   private _options: (GetOption | EChartsOption)[];
@@ -17,7 +51,7 @@ class Scene {
 
   private _currentIndex: number = 0;
 
-  private _timeout: number = 0;
+  private _timeout?: Animator;
 
   constructor(opts: {
     /**
@@ -57,31 +91,36 @@ class Scene {
     return this._titleStyle;
   }
 
+  getBackground() {
+    return this._background;
+  }
+
   isDark() {
     return this._dark;
   }
 
-  play(chart: ECharts, container: HTMLElement) {
-    if (this._timeout) {
-      clearTimeout(this._timeout);
-    }
+  reset() {
     // Reset
     this._currentIndex = 0;
-    this._playCurrent(chart, container, true);
   }
 
-  stop() {
-    clearTimeout(this._timeout);
+  play(chart: ECharts, onfinish: () => void) {
+    if (this._timeout) {
+      chartClearTimeout(chart, this._timeout);
+    }
+    this._playCurrent(chart, onfinish);
   }
 
-  private _playCurrent(
-    chart: ECharts,
-    container: HTMLElement,
-    notMerge: boolean
-  ) {
+  stop(chart: ECharts) {
+    chartClearTimeout(chart, this._timeout);
+  }
+
+  private _playCurrent(chart: ECharts, onfinish: () => void) {
     if (this._currentIndex >= this._options.length) {
+      onfinish();
       return;
     }
+    const notMerge = this._currentIndex === 0;
     const option = this._options[this._currentIndex];
     if (typeof option === 'function') {
       const ret = option(chart);
@@ -91,20 +130,18 @@ class Scene {
     } else {
       chart.setOption(option, notMerge);
     }
-    const bg = this._background;
-    if (bg) {
-      container.style.background = bg;
-    } else {
-      container.style.background = 'none';
-    }
 
     const duration =
       this._durations[this._currentIndex] ||
       this._durations[this._durations.length - 1];
     // Play next scene.
-    this._timeout = setTimeout(() => {
-      this._playCurrent(chart, container, false);
-    }, duration) as unknown as number;
+    this._timeout = chartSetTimeout(
+      chart,
+      () => {
+        this._playCurrent(chart, onfinish);
+      },
+      duration
+    );
 
     this._currentIndex++;
   }
