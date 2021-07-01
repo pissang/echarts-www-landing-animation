@@ -23,6 +23,7 @@
     "vue-tsc": "^0.1.4"
   },
   "dependencies": {
+    "@types/d3-hierarchy": "^3.0.0",
     "d3-hierarchy": "^3.0.1",
     "echarts": "npm:echarts-nightly@^5.1.3-dev.20210626",
     "echarts-gl": "^2.0.5",

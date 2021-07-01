@@ -48,7 +48,9 @@ countries.forEach(function (country) {
       backgroundColor: 'rgba(255,255,255,0.8)',
       borderRadius: 3,
       formatter: function (params) {
-        return params.value[3] + ': ' + params.value[0];
+        return (
+          (params.value as unknown[])[3] + ': ' + (params.value as unknown[])[0]
+        );
       },
     },
     lineStyle: {

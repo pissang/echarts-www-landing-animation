@@ -1,3 +1,4 @@
+// @ts-nocheck
 import optionView from './option-view.json';
 
 function convert(source: any, target: any, basePath: string, depth: number) {

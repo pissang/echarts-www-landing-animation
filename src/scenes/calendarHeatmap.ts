@@ -1,4 +1,4 @@
-import { color, EChartsOption } from 'echarts';
+import { EChartsOption } from 'echarts';
 import Scene from '../components/Scene';
 import { defaultFont } from './common/style';
 import ghContributions from './data/gh-contributions-2020.json';

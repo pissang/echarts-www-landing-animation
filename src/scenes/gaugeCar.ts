@@ -97,6 +97,7 @@ const option: (EChartsOption | GetOption)[] = [
         detail: {
           valueAnimation: true,
           formatter: '{value}\n{unit|km / h}',
+          offsetCenter: [0, '50%'],
           rich: {
             unit: {
               lineHeight: 80,

@@ -1,8 +1,13 @@
 import { CustomSeriesOption, EChartsOption } from 'echarts';
 import Scene from '../components/Scene';
-import { defaultColorPalette2, defaultFont } from './common/style';
+import { defaultFont } from './common/style';
 import data from './data/echarts-package-size.json';
-import { pack, hierarchy } from 'd3-hierarchy';
+import {
+  pack,
+  hierarchy,
+  HierarchyNode,
+  HierarchyCircularNode,
+} from 'd3-hierarchy';
 
 interface DataNode {
   name: string;
@@ -10,33 +15,26 @@ interface DataNode {
   children?: DataNode[];
 }
 
-interface LayoutNode {
-  data: DataNode;
-  x: number;
-  y: number;
-  r: number;
-  depth: number;
-
-  children?: LayoutNode[];
-}
-
-const root = hierarchy(data)
-  .sum(function (d: DataNode) {
+const root = hierarchy<DataNode>(data as DataNode)
+  .sum(function (d) {
     return d.value;
   })
-  .sort(function (a: DataNode, b: DataNode) {
-    return b.value - a.value;
+  .sort(function (a, b) {
+    return (b?.value || 0) - (a?.value || 0);
   });
 
 let maxDepth = 0;
-const seriesData = root.descendants().map(function (node: LayoutNode) {
+const seriesData = root.descendants().map(function (node) {
   maxDepth = Math.max(maxDepth, node.depth);
   return [node.data.value, node.depth, node.data.name];
 });
 
 const renderItem: CustomSeriesOption['renderItem'] = (params, api) => {
   const context = params.context;
-  type ContextNodes = Record<string, { index: number; node: LayoutNode }>;
+  type ContextNodes = Record<
+    string,
+    { index: number; node: HierarchyCircularNode<DataNode> }
+  >;
   let contextNodes: ContextNodes = context.nodes as ContextNodes;
 
   if (!contextNodes) {
@@ -45,10 +43,10 @@ const renderItem: CustomSeriesOption['renderItem'] = (params, api) => {
       .size([api.getWidth() - 2, api.getHeight() - 2])
       .padding(3)(root);
 
-    root.descendants().forEach(function (node: LayoutNode, index: number) {
+    root.descendants().forEach(function (node, index: number) {
       contextNodes[node.data.name] = {
         index: index,
-        node: node,
+        node: node as HierarchyCircularNode<DataNode>,
       };
     });
   }
