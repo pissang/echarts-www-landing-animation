@@ -14,6 +14,7 @@ const option: (EChartsOption | GetOption)[] = [
       textStyle: {
         fontSize: 25,
         fontFamily: defaultFont,
+        color: '#fff',
       },
     },
     color: defaultColorPalette2,
@@ -37,7 +38,7 @@ const option: (EChartsOption | GetOption)[] = [
         },
         itemStyle: {
           borderWidth: 0.5,
-          borderColor: 'rgba(255,255,255,.5)',
+          borderColor: 'rgba(0,0,0,.5)',
         },
         levels: [
           {},
@@ -93,5 +94,7 @@ const option: (EChartsOption | GetOption)[] = [
 export default new Scene({
   title: 'Sunburst',
   option,
+  dark: true,
   duration: [3000, 2000, 2000],
+  background: '#001122',
 });

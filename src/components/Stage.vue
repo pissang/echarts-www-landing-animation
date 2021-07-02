@@ -16,13 +16,13 @@
         ></div>
       </div>
     </div>
-    <div id="auto-play-control" @click="isAutoplay = !isAutoplay">
+    <div id="auto-play-control" @click="paused = !paused">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-5 w-5"
         viewBox="0 0 20 20"
         fill="currentColor"
-        v-if="!isAutoplay"
+        v-if="paused"
       >
         <path
           fill-rule="evenodd"
@@ -52,6 +52,7 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, shallowRef, watch } from 'vue';
+import { useUrlSearchParams } from '@vueuse/core';
 
 import * as echarts from 'echarts';
 import definedScenes from '../scenes/index';
@@ -64,15 +65,18 @@ const sceneIndices = ref(scenes.value.map((scene, idx) => idx));
 const playIndex = ref(-1);
 const chart = shallowRef<ECharts | null | undefined>(null);
 const containerRef = ref<HTMLElement | null | undefined>(null);
-const isAutoplay = ref(true);
+const paused = ref(false);
 
 const currentScene = ref<Scene | null>(null);
 
+const urlParams =
+  useUrlSearchParams<{ scene: string; autoplay: string }>('history');
+
 function setIndexToHash() {
-  window.location.hash = 'scene_' + playIndex.value;
+  urlParams.scene = playIndex.value + '';
 }
 function getIndexFromHash() {
-  let newIndex = +window.location.hash.substr(1).replace('scene_', '') || 0;
+  let newIndex = +(urlParams.scene || 0);
   if (newIndex !== playIndex.value) {
     playIndex.value = newIndex;
   }
@@ -111,19 +115,22 @@ function playCurrentScene(reset: boolean) {
   }
 
   currentScene.value.play(chart.value!, () => {
-    nextScene();
+    // Only disable autoplay when it's set false
+    if (urlParams.autoplay !== 'false') {
+      nextScene();
+    }
   });
 
   setIndexToHash();
 }
 
-watch(isAutoplay, (val) => {
+watch(paused, (val) => {
   if (!chart.value) {
     return;
   }
   val
-    ? chart.value.getZr().animation.resume()
-    : chart.value.getZr().animation.pause();
+    ? chart.value.getZr().animation.pause()
+    : chart.value.getZr().animation.resume();
 });
 
 onMounted(() => {
@@ -135,9 +142,9 @@ onMounted(() => {
     chart.value?.clear();
     playCurrentScene(true);
   };
-  window.onhashchange = function () {
+  watch(urlParams, () => {
     getIndexFromHash();
-  };
+  });
 
   getIndexFromHash();
 });

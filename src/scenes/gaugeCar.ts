@@ -15,6 +15,7 @@ const option: (EChartsOption | GetOption)[] = [
         animationEasing: 'quadraticOut',
         radius: '80%',
         max: 300,
+        silent: true,
         axisLine: {
           lineStyle: {
             width: 2,

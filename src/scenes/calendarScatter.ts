@@ -1,5 +1,5 @@
 import { EChartsOption } from 'echarts';
-import Scene from '../components/Scene';
+import Scene, { GetOption } from '../components/Scene';
 import { defaultFont } from './common/style';
 import ghContributions from './data/gh-contributions-2020.json';
 
@@ -8,8 +8,8 @@ const highlightedData = ghContributions
   .sort((a, b) => +b[1] - +a[1])
   .slice(0, 10);
 
-const option: EChartsOption[] = [
-  {
+const option: (EChartsOption | GetOption)[] = [
+  (chart) => ({
     textStyle: {
       fontFamily: defaultFont,
     },
@@ -47,6 +47,7 @@ const option: EChartsOption[] = [
       type: 'scatter',
       coordinateSystem: 'calendar',
       symbol: 'roundRect',
+      symbolSize: Math.min((chart.getWidth() - 70) / 80, 16),
       data: ghContributions,
       itemStyle: {},
       universalTransition: {
@@ -54,7 +55,7 @@ const option: EChartsOption[] = [
         seriesKey: 'calendar',
       },
     },
-  },
+  }),
 
   {
     series: {
@@ -62,7 +63,7 @@ const option: EChartsOption[] = [
     },
   },
 
-  {
+  (chart) => ({
     title: {
       text: 'Highlight Data with Special Effect',
       left: 'center',
@@ -85,6 +86,7 @@ const option: EChartsOption[] = [
       {
         type: 'effectScatter',
         coordinateSystem: 'calendar',
+        symbolSize: Math.min((chart.getWidth() - 70) / 80, 16),
         rippleEffect: {
           brushType: 'stroke',
           scale: 4,
@@ -92,7 +94,7 @@ const option: EChartsOption[] = [
         data: highlightedData,
       },
     ],
-  },
+  }),
 ];
 
 export default new Scene({

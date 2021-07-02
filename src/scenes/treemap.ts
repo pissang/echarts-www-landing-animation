@@ -6,7 +6,6 @@ import data from './data/echarts-package-size.json';
 const option: (EChartsOption | GetOption)[] = [
   {
     color: defaultColorPalette2,
-    tooltip: {},
     series: [
       {
         type: 'treemap',

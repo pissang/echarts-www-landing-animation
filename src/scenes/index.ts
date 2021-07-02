@@ -15,6 +15,7 @@ import circlePacking from './circlePacking';
 import calendarHeatmap from './calendarHeatmap';
 import calendarScatter from './calendarScatter';
 import gaugeCar from './gaugeCar';
+import metaball from './metaball';
 
 export default [
   pieEntry,
@@ -24,6 +25,7 @@ export default [
   bar,
   barPolar,
   wave,
+  metaball,
   scatterShape,
   lineRacing,
   barRacing,
