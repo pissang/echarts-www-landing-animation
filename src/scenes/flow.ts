@@ -43,7 +43,6 @@ const option: EChartsOption = {
     left: 0,
     right: 0,
     top: 0,
-    zoom: 1,
     silent: true,
     itemStyle: {
       areaColor: 'rgba(0,0,0,0.1)',
@@ -54,9 +53,9 @@ const option: EChartsOption = {
     type: 'flowGL',
     coordinateSystem: 'geo',
     data: windsData.data,
-    supersampling: 4,
+    supersampling: 2,
     particleType: 'line',
-    particleDensity: 128,
+    particleDensity: 256,
     particleSpeed: 1,
     itemStyle: {
       opacity: 0.7,

@@ -11,4 +11,8 @@ export default defineConfig({
       echarts: path.resolve(__dirname, 'node_modules/echarts'),
     },
   },
+
+  optimizeDeps: {
+    exclude: ['echarts-gl'],
+  },
 });

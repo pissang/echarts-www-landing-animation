@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, shallowRef, watch } from 'vue';
+import { ref, onMounted, shallowRef, watch, onUnmounted } from 'vue';
 import { useUrlSearchParams } from '@vueuse/core';
 
 import * as echarts from 'echarts';
@@ -147,6 +147,11 @@ onMounted(() => {
   });
 
   getIndexFromHash();
+});
+
+onUnmounted(() => {
+  currentScene.value?.stop(chart.value);
+  chart.value?.dispose();
 });
 </script>
 
