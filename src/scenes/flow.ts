@@ -55,6 +55,8 @@ const option: EChartsOption = {
     particleType: 'line',
     particleDensity: 256,
     particleSpeed: 1,
+    // TODO Better guess?
+    gridWidth: windsData.nx,
     itemStyle: {
       opacity: 0.7,
     },

@@ -58,6 +58,7 @@ import * as echarts from 'echarts';
 import definedScenes from '../scenes/index';
 import Scene from './Scene';
 import type { ECharts } from 'echarts';
+import audioSource from '../assets/bensound-happyrock.mp3';
 
 const scenes = shallowRef<Scene[]>(definedScenes);
 const sceneIndices = ref(scenes.value.map((scene, idx) => idx));
@@ -66,11 +67,21 @@ const playIndex = ref(-1);
 const chart = shallowRef<ECharts | null | undefined>(null);
 const containerRef = ref<HTMLElement | null | undefined>(null);
 const paused = ref(false);
+const audio = shallowRef<HTMLAudioElement>();
 
 const currentScene = ref<Scene | null>(null);
 
 const urlParams =
   useUrlSearchParams<{ scene: string; autoplay: string }>('history');
+
+if (urlParams.autoplay !== 'false') {
+  // audio.value = document.createElement('audio');
+  // audio.value.src = audioSource;
+  // audio.value.autoplay = true;
+  // window.onclick = () => {
+  //   audio.value?.play();
+  // };
+}
 
 function setIndexToHash() {
   urlParams.scene = playIndex.value + '';
@@ -131,6 +142,8 @@ watch(paused, (val) => {
   val
     ? chart.value.getZr().animation.pause()
     : chart.value.getZr().animation.resume();
+
+  val ? audio.value?.pause() : audio.value?.play();
 });
 
 onMounted(() => {

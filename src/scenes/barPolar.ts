@@ -49,5 +49,4 @@ export default new Scene({
   option: barPolar,
   duration: 1500,
   title: 'Polar Bar Chart',
-  background: 'linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)',
 });

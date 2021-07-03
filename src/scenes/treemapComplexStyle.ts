@@ -71,7 +71,7 @@ const option: EChartsOption = {
         return {
           fontSize: Math.min(
             Math.sqrt(params.rect.width * params.rect.height) / 10,
-            20
+            14
           ),
         };
       },
