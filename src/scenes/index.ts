@@ -26,7 +26,7 @@ export default [
   barPolar,
   wave,
   metaball,
-  scatterShape,
+  // scatterShape,
   lineRacing,
   barRacing,
   // heatmap,
