@@ -201,8 +201,8 @@ export default new Scene({
   option,
   title: 'Extending Your Shape',
   duration: [
-    500,
-    ...dataAll.slice(1).map((a) => 1700),
+    100,
+    ...dataAll.slice(1).map((a) => 1500),
     ...SVG_SHAPES.map((a) => 500),
   ],
   dark: true,
