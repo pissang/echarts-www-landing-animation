@@ -8,6 +8,7 @@ export default defineConfig({
     alias: {
       // TODO build with rollup will fail to resolve zrender import
       zrender: path.resolve(__dirname, 'node_modules/zrender'),
+      echarts: path.resolve(__dirname, 'node_modules/echarts'),
     },
   },
 });

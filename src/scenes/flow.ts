@@ -1,0 +1,73 @@
+import { EChartsOption, registerMap, use } from 'echarts';
+import Scene from '../components/Scene';
+import worldGeoJSON from './data/world.json';
+import windsData from './data/windsData';
+// @ts-ignore
+// import { FlowGLChart } from 'echarts-gl/charts';
+// use([FlowGLChart]);
+
+import 'echarts-gl';
+
+registerMap('world', worldGeoJSON as any);
+
+const option: EChartsOption = {
+  visualMap: {
+    show: false,
+    left: 'center',
+    top: 0,
+    min: windsData.min,
+    max: windsData.max,
+    dimension: 4,
+    inRange: {
+      color: [
+        '#313695',
+        '#4575b4',
+        '#74add1',
+        '#abd9e9',
+        '#e0f3f8',
+        '#ffffbf',
+        '#fee090',
+        '#fdae61',
+        '#f46d43',
+        '#d73027',
+        '#a50026',
+      ],
+    },
+    textStyle: {
+      color: '#fff',
+    },
+    orient: 'horizontal',
+  },
+  geo: {
+    map: 'world',
+    left: 0,
+    right: 0,
+    top: 0,
+    zoom: 1,
+    silent: true,
+    itemStyle: {
+      areaColor: 'rgba(0,0,0,0.1)',
+      borderColor: 'rgba(0,0,0,0.2)',
+    },
+  },
+  series: {
+    type: 'flowGL',
+    coordinateSystem: 'geo',
+    data: windsData.data,
+    supersampling: 4,
+    particleType: 'line',
+    particleDensity: 128,
+    particleSpeed: 1,
+    itemStyle: {
+      opacity: 0.7,
+    },
+  } as any,
+};
+
+export default new Scene({
+  title: 'And Flow It',
+  option,
+  duration: 8000,
+  dark: true,
+  background: '#001122',
+});

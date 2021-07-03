@@ -16,6 +16,8 @@ import calendarHeatmap from './calendarHeatmap';
 import calendarScatter from './calendarScatter';
 import gaugeCar from './gaugeCar';
 import metaball from './metaball';
+import vector from './vector';
+import flow from './flow';
 
 export default [
   pieEntry,
@@ -37,4 +39,6 @@ export default [
   calendarHeatmap,
   calendarScatter,
   gaugeCar,
+  vector,
+  flow,
 ];

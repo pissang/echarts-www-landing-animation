@@ -32,7 +32,7 @@ const option: (EChartsOption | GetOption)[] = [
         },
         progress: {
           show: true,
-          width: 100,
+          width: 200,
           itemStyle: {
             color: {
               type: 'radial',
