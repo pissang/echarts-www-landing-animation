@@ -15,6 +15,8 @@ for (let i = 0; i < ringsCount; i++) {
       i / (ringsCount - 1),
       // Angle
       (k / ringPoints) * Math.PI * 2,
+      // Size
+      i === 0 ? 1.2 : Math.random() * 0.5 + 0.5,
       // Spawn from
     ]);
   }
@@ -34,9 +36,9 @@ for (let i = 1; i < ringsCount; i++) {
     const pt = rings[i][k];
 
     // Spawn from
-    pt[2] = fromIdx + (i === 1 ? 0 : dataAll[i - 2].length);
+    pt[3] = fromIdx + (i === 1 ? 0 : dataAll[i - 2].length);
     // Random delay
-    pt[3] = Math.random() * 1000;
+    pt[4] = Math.random() * 1000;
 
     data.push(pt);
   }
@@ -53,7 +55,7 @@ function getCircleShape(
   const ring = api.value(0, dataIndex) as number;
   const angle = api.value(1, dataIndex) as number;
   const r = viewSize * ring;
-  const size = viewSize / 20;
+  const size = ((viewSize / 20) * api.value(2, dataIndex)) as number;
   const center = [width / 2, height / 2];
   const cx = center[0] + Math.cos(angle) * r;
   const cy = center[1] + Math.sin(angle) * r;
@@ -83,7 +85,7 @@ const option: (EChartsOption | GetOption)[] = [
             animationDuration: 700,
             animationEasing: 'cubicInOut',
             animationDelay: (idx, params) => {
-              return data[idx][3] || 0;
+              return data[idx][4] || 0;
             },
             renderItem(params, api) {
               const width = api.getWidth();
@@ -91,7 +93,7 @@ const option: (EChartsOption | GetOption)[] = [
               const viewSize = Math.sqrt(width * width + height * height) / 2;
               const circleShape = getCircleShape(api);
 
-              const fromIdx = data[params.dataIndex][2] as number;
+              const fromIdx = data[params.dataIndex][3] as number;
 
               const fromShape =
                 fromIdx != null ? getCircleShape(api, fromIdx) : null;

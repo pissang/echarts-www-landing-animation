@@ -3,10 +3,8 @@ import Scene from '../components/Scene';
 import worldGeoJSON from './data/world.json';
 import windsData from './data/windsData';
 // @ts-ignore
-// import { FlowGLChart } from 'echarts-gl/charts';
-// use([FlowGLChart]);
-
-import 'echarts-gl';
+import { FlowGLChart } from 'echarts-gl/charts';
+use([FlowGLChart]);
 
 registerMap('world', worldGeoJSON as any);
 

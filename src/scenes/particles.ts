@@ -3,6 +3,7 @@ import { EChartsOption } from 'echarts';
 import pieData from './data/pieData';
 import Scene from '../components/Scene';
 
+const fov = 800; //pixels are 300px away from us
 function project3dcoords(
   x: number,
   y: number,
@@ -14,7 +15,6 @@ function project3dcoords(
   //calculating 2d position for 3d coordinates
   //fov = field of view = denotes how far the pixels are from us.
   //the scale will control how the spacing between the pixels will decrease with increasing distance from us.
-  const fov = 800; //pixels are 300px away from us
   const scale = fov / (fov + z);
   return [x * scale + w / 2, y * scale + h / 2];
 }
@@ -149,7 +149,7 @@ const waveOption: EChartsOption[] = [
         const m = idx % grid;
         const n = Math.floor(idx / grid);
         const [x, y, z] = get3dcoords(m, n, 0);
-        const size = +api.value(2) * 3 + 3;
+        const size = ((+api.value(2) * 10 + 10) * fov) / (fov + z);
         const [x2d, y2d] = project3dcoords(
           x,
           y,
@@ -187,7 +187,7 @@ const waveOption: EChartsOption[] = [
         const n = Math.floor(idx / grid);
         const [x, y, z] = get3dcoords(m, n, 0);
         // const size = Math.abs(n - grid / 2) + 5;
-        const size = +api.value(2) * 3 + 3;
+        const size = ((+api.value(2) * 10 + 10) * fov) / (fov + z);
         const w = api.getWidth();
         const h = api.getHeight();
         const [x2d, y2d] = project3dcoords(x, y, z, w, h);
@@ -219,10 +219,10 @@ const waveOption: EChartsOption[] = [
   // To a line
   {
     series: {
-      animationEasingUpdate: 'elasticOut',
-      animationDurationUpdate: 500,
+      animationEasingUpdate: 'cubicOut',
+      animationDurationUpdate: 200,
       animationDelayUpdate(idx) {
-        return Math.random() * 1000;
+        return Math.random() * 500;
       },
 
       renderItem(params, api) {
@@ -256,7 +256,7 @@ const waveOption: EChartsOption[] = [
   // To a dot
   {
     series: {
-      animationEasingUpdate: 'cubicInOut',
+      animationEasingUpdate: 'cubicOut',
       animationDurationUpdate: 500,
       animationDelayUpdate: 0,
 
@@ -284,5 +284,5 @@ export default new Scene({
   option: waveOption,
   title: 'Customized Particles Animation',
   background: 'orange',
-  duration: [700, 500, 1000, 500, 5000, 1500, 500],
+  duration: [700, 500, 1000, 500, 5000, 700, 500],
 });
