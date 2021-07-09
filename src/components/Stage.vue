@@ -58,7 +58,7 @@ import * as echarts from 'echarts';
 import definedScenes from '../scenes/index';
 import Scene from './Scene';
 import type { ECharts } from 'echarts';
-import audioSource from '../assets/bensound-happyrock.mp3';
+// import audioSource from '../assets/bensound-happyrock.mp3';
 
 const scenes = shallowRef<Scene[]>(definedScenes);
 const sceneIndices = ref(scenes.value.map((scene, idx) => idx));
