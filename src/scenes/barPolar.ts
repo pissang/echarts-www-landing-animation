@@ -1,5 +1,5 @@
 import { EChartsOption } from 'echarts';
-import { darkColorPalette, defaultColorPalette } from './common/style';
+import { defaultColorPalette } from './common/style';
 import pieData from './data/pieData';
 import Scene from '../components/Scene';
 
@@ -7,7 +7,7 @@ const barPolar: EChartsOption = {
   angleAxis: {
     axisLine: {
       lineStyle: {
-        color: '#333',
+        color: '#eee',
       },
     },
     data: pieData.map((item) => item.name),

@@ -55,7 +55,7 @@ function getCircleShape(
   const ring = api.value(0, dataIndex) as number;
   const angle = api.value(1, dataIndex) as number;
   const r = viewSize * ring;
-  const size = ((viewSize / 20) * api.value(2, dataIndex)) as number;
+  const size = (viewSize / 20) * +api.value(2, dataIndex);
   const center = [width / 2, height / 2];
   const cx = center[0] + Math.cos(angle) * r;
   const cy = center[1] + Math.sin(angle) * r;

@@ -41,6 +41,7 @@ const option: EChartsOption = {
     left: 0,
     right: 0,
     top: 0,
+    bottom: 0,
     silent: true,
     itemStyle: {
       areaColor: 'rgba(0,0,0,0.1)',
