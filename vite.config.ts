@@ -13,6 +13,6 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    exclude: ['echarts-gl'],
+    exclude: ['echarts-gl', 'echarts-wordcloud', 'echarts-liquidfill'],
   },
 });

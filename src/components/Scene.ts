@@ -9,7 +9,7 @@ export type GetOption = (chart: ECharts) => EChartsOption | undefined | void;
 
 type Animator = ReturnType<typeof chartSetTimeout>;
 
-function chartSetTimeout(chart: ECharts, cb: () => void, time: number) {
+export function chartSetTimeout(chart: ECharts, cb: () => void, time: number) {
   const animator = chart
     .getZr()
     .animation.animate({ val: 0 } as any, {
@@ -33,7 +33,7 @@ function chartSetTimeout(chart: ECharts, cb: () => void, time: number) {
   return animator;
 }
 
-function chartClearTimeout(chart: ECharts, animator?: Animator) {
+export function chartClearTimeout(chart: ECharts, animator?: Animator) {
   if (!animator) {
     return;
   }

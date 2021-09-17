@@ -35,4 +35,4 @@ export const darkColorPalette = [
   '#dd79ff',
 ];
 
-export const defaultFont = "'Oswald', sans-serif";
+export const defaultFont = "'Open Sans Condensed', sans-serif";

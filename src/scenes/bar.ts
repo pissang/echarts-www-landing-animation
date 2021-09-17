@@ -18,12 +18,13 @@ const bar: EChartsOption = {
         show: false,
       },
       animationEasingUpdate: 'circularInOut',
-      animationDurationUpdate: 1000,
+      animationDurationUpdate: 800,
       universalTransition: {
         enabled: true,
         seriesKey: 'point',
         delay: (idx, count) => {
-          return count === 1 ? 0 : (1 - idx / count) * 1000;
+          // return count === 1 ? 0 : (1 - idx / count) * 1000;
+          return Math.random() * 1000;
         },
       },
       itemStyle: {},

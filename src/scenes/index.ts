@@ -18,6 +18,9 @@ import gaugeCar from './gaugeCar';
 import metaball from './metaball';
 import vector from './vector';
 import flow from './flow';
+import realtimeLine from './realtimeLine';
+import wordCloud from './wordCloud';
+import liquidFill from './liquidFill';
 
 export default [
   pieEntry,
@@ -41,4 +44,7 @@ export default [
   gaugeCar,
   vector,
   flow,
+  // realtimeLine,
+  wordCloud,
+  liquidFill,
 ];

@@ -12,6 +12,7 @@
         <div
           v-for="idx in sceneIndices"
           :class="['checkpoint', idx === playIndex ? 'current' : '']"
+          :key="idx"
           @click="playIndex = idx"
         ></div>
       </div>
@@ -169,7 +170,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
 
 #stage-main {
   position: absolute;
