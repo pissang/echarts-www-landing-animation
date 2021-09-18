@@ -4,6 +4,8 @@ import MetaballPath from './common/MetaballPath';
 
 graphic.registerShape('metaball', MetaballPath as any);
 
+const FILL_COLOR = '#ddd';
+
 const rings: number[][][] = [];
 const ringsCount = 6;
 for (let i = 0; i < ringsCount; i++) {
@@ -114,7 +116,7 @@ const option: (EChartsOption | GetOption)[] = [
                     },
                     transition: ['shape'],
                     style: {
-                      fill: '#14E0F8',
+                      fill: FILL_COLOR,
                     },
                   },
 
@@ -139,7 +141,7 @@ const option: (EChartsOption | GetOption)[] = [
                             },
                           },
                           style: {
-                            fill: '#14E0F8',
+                            fill: FILL_COLOR,
                           },
                         },
                       ]
@@ -193,7 +195,7 @@ const option: (EChartsOption | GetOption)[] = [
                 },
                 transition: ['shape'],
                 style: {
-                  fill: '#14E0F8',
+                  fill: FILL_COLOR,
                 },
               };
             },
@@ -212,5 +214,6 @@ export default new Scene({
     ...SVG_SHAPES.map((a) => 500),
   ],
   dark: true,
-  background: '#225369',
+  // background: '#225369',
+  background: '#373940',
 });

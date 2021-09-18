@@ -62,7 +62,7 @@ const waveOption: EChartsOption[] = [
         const idx = params.dataIndex;
         const x = +api.value(0) * api.getWidth();
         const y = +api.value(1) * api.getHeight();
-        const size = 5;
+        const size = 4;
         return {
           type: 'circle',
           // autoBatch: true,
@@ -283,6 +283,8 @@ const waveOption: EChartsOption[] = [
 export default new Scene({
   option: waveOption,
   title: 'Customized Particles Animation',
-  background: 'orange',
+  // background: 'orange',
+  background: '#707585',
+  dark: true,
   duration: [700, 500, 1000, 500, 5000, 700, 500],
 });
