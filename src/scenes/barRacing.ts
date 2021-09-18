@@ -6,9 +6,14 @@ import * as covidData from './data/covidData';
 const barRaceOptions: EChartsOption[] = [];
 const len = 10;
 for (var n = 50; n < 50 + len; n++) {
-  var res = [];
+  const res: (string | number)[][] = [];
+  const isFirst = n === 50;
   for (var j = 0; j < covidData.rawData[n].length; j++) {
     res.push([covidData.country[j], covidData.rawData[n][j]]);
+  }
+
+  if (isFirst) {
+    res.sort((a, b) => +b[1] - +a[1]);
   }
 
   barRaceOptions.push({
@@ -26,13 +31,21 @@ for (var n = 50; n < 50 + len; n++) {
     xAxis: {
       show: false,
     },
+    visualMap: {
+      show: false,
+      min: 0,
+      max: 50,
+      inRange: {
+        colorAlpha: [0.5, 1],
+      },
+    },
     yAxis: [
       {
         inverse: true,
         type: 'category',
-        max: 15,
+        max: n === 50 ? undefined : 15,
         nameTextStyle: {
-          color: '#fff',
+          // color: '#fff',
         },
         animationDurationUpdate: 200,
         animationEasingUpdate: 'cubicOut',
@@ -41,7 +54,7 @@ for (var n = 50; n < 50 + len; n++) {
         },
         axisLabel: {
           fontSize: 14,
-          color: '#fff',
+          // color: '#fff',
           interval: 0,
         },
         axisLine: {
@@ -61,12 +74,14 @@ for (var n = 50; n < 50 + len; n++) {
           y: 0,
         },
         itemStyle: {
-          color: 'rgba(255, 255, 255, 0.6)',
+          borderRadius: 2,
+          // color: 'rgba(255, 255, 255, 0.6)',
         },
         realtimeSort: true,
         barWidth: '70%',
         animationDurationUpdate: 1000,
-        animationEasingUpdate: 'linear',
+        animationEasingUpdate: isFirst ? 'cubicInOut' : 'linear',
+        universalTransition: true,
         label: {
           valueAnimation: true,
           show: true,
@@ -82,9 +97,9 @@ for (var n = 50; n < 50 + len; n++) {
 
 export default new Scene({
   option: barRaceOptions,
-  duration: 1000,
+  duration: [2000, 1000],
   title: 'Racing Bar Chart',
-  background: 'linear-gradient(to top, #f77062 0%, #fe5196 100%)',
-  dark: true,
+  // background: 'linear-gradient(to top, #f77062 0%, #fe5196 100%)',
+  // dark: true,
   titleStyle: 'right: 30px; left:auto',
 });

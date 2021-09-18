@@ -8,8 +8,11 @@ const option: GetOption[] = [
       {
         id: 'liquidFill',
         type: 'liquidFill',
-        data: [0.7, 0.6, 0.5],
+        data: [0.7, 0.6],
         radius: '70%',
+        itemStyle: {
+          shadowColor: 'rgba(0, 0, 0, 0.2)',
+        },
         animationEasing: 'cubicOut',
         silent: true,
       } as any,
@@ -19,7 +22,7 @@ const option: GetOption[] = [
   (chart) => {
     const waves = [
       {
-        value: 0.4,
+        value: 0.44,
         valueSine: 0.1,
         period: 5000,
         amplitude: 120,
@@ -58,22 +61,22 @@ const option: GetOption[] = [
         amplitudeSine: 10,
         waveLength: '40%',
       },
-      {
-        value: 0.3,
-        valueSine: 0.05,
-        period: 4000,
-        amplitude: 15,
-        amplitudeSine: 10,
-        waveLength: '20%',
-      },
-      {
-        value: 0.3,
-        valueSine: 0.05,
-        period: 1500,
-        amplitude: 60,
-        amplitudeSine: 10,
-        waveLength: '30%',
-      },
+      // {
+      //   value: 0.3,
+      //   valueSine: 0.05,
+      //   period: 4000,
+      //   amplitude: 15,
+      //   amplitudeSine: 10,
+      //   waveLength: '20%',
+      // },
+      // {
+      //   value: 0.3,
+      //   valueSine: 0.05,
+      //   period: 1500,
+      //   amplitude: 60,
+      //   amplitudeSine: 10,
+      //   waveLength: '30%',
+      // },
     ];
 
     const data = [];
@@ -118,19 +121,20 @@ const option: GetOption[] = [
           backgroundStyle: {
             color: 'transparent',
           },
+          itemStyle: {
+            // shadowBlur: 5,
+            shadowColor: 'rgba(0, 0, 0, 0.2)',
+          },
           outline: {
             show: false,
           },
           universalTransition: true,
           label: {
-            normal: {
-              textStyle: {
-                color: '#282536',
-                fontSize: 72,
-              },
-              formatter: function () {
-                return '浮世绘';
-              },
+            show: false,
+            color: '#282536',
+            fontSize: 72,
+            formatter: function () {
+              return 'Ukiyoe'.toUpperCase();
             },
           },
         },

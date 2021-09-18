@@ -149,7 +149,9 @@ watch(paused, (val) => {
 
 onMounted(() => {
   // Init chart
-  chart.value = echarts.init(containerRef.value!);
+  chart.value = echarts.init(containerRef.value!, null, {
+    useDirtyRect: true,
+  });
   window.onresize = function () {
     chart.value?.resize();
     // Replay current scene.
@@ -164,13 +166,13 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  currentScene.value?.stop(chart.value);
+  currentScene.value?.stop(chart.value!);
   chart.value?.dispose();
 });
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 
 #stage-main {
   position: absolute;
@@ -193,7 +195,7 @@ onUnmounted(() => {
   transition: linear 200ms color;
 
   z-index: 1;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 #stage-main.dark #stage-title {

@@ -21,6 +21,8 @@ import flow from './flow';
 import realtimeLine from './realtimeLine';
 import wordCloud from './wordCloud';
 import liquidFill from './liquidFill';
+import dirtyRect from './dirtyRect';
+import map from './map';
 
 export default [
   pieEntry,
@@ -32,8 +34,9 @@ export default [
   wave,
   metaball,
   // scatterShape,
-  lineRacing,
+  map,
   barRacing,
+  lineRacing,
   // heatmap,
   treemap,
   treemapComplexStyle,
@@ -42,9 +45,12 @@ export default [
   calendarHeatmap,
   calendarScatter,
   gaugeCar,
+  wordCloud,
+  liquidFill,
+  // From large dataset
   vector,
   flow,
   // realtimeLine,
-  wordCloud,
-  liquidFill,
+  // To tiny sparkline
+  // dirtyRect,
 ];
