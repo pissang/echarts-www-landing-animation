@@ -44,7 +44,8 @@ const paliamentOption: EChartsOption = {
         children: points.map((pt) => {
           return {
             type: 'circle',
-            autoBatch: true,
+            // TODO enable it when it's fixed
+            // autoBatch: true,
             shape: {
               cx: cx + pt[0],
               cy: cy + pt[1],

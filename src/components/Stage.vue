@@ -177,13 +177,12 @@ onUnmounted(() => {
 #stage-main {
   position: absolute;
   @apply left-0 top-0 h-full w-full;
+  transition: linear 200ms background;
 }
 
 #stage-viewport {
   position: absolute;
   @apply left-0 top-0 h-full w-full;
-
-  transition: linear 200ms background;
 }
 
 #stage-title {

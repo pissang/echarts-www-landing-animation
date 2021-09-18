@@ -6,7 +6,7 @@ import {
 
 import lineRacingData from './data/life-expectancy-table.json';
 import Scene from '../components/Scene';
-import { defaultFont } from './common/style';
+import { darkColorPalette, defaultFont } from './common/style';
 
 // var countries = ['Australia', 'Canada', 'China', 'Cuba', 'Finland', 'France', 'Germany', 'Iceland', 'India', 'Japan', 'North Korea', 'South Korea', 'New Zealand', 'Norway', 'Poland', 'Russia', 'Turkey', 'United Kingdom', 'United States'];
 var countries = [
@@ -53,9 +53,9 @@ countries.forEach(function (country) {
         );
       },
     },
-    lineStyle: {
-      color: 'rgba(255, 255, 255, 0.6)',
-    },
+    // lineStyle: {
+    //   color: 'rgba(255, 255, 255, 0.6)',
+    // },
     labelLayout: {
       moveOverlap: 'shiftY',
     },
@@ -74,6 +74,7 @@ countries.forEach(function (country) {
 
 const option: EChartsOption = {
   animationDuration: 5000,
+  color: darkColorPalette,
   dataset: [
     {
       id: 'dataset_raw',
@@ -113,7 +114,8 @@ const option: EChartsOption = {
 export default new Scene({
   option,
   title: 'Racing Line Chart',
-  background: 'linear-gradient(to top, #f77062 0%, #fe5196 100%)',
+  // background: 'linear-gradient(to top, #f77062 0%, #fe5196 100%)',
+  background: '#001122',
   titleStyle: 'right: 20px; top: 10px; left: auto;',
   dark: true,
   duration: 5000,

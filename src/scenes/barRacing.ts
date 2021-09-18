@@ -5,16 +5,18 @@ import * as covidData from './data/covidData';
 
 const barRaceOptions: EChartsOption[] = [];
 const len = 10;
-for (var n = 50; n < 50 + len; n++) {
-  const res: (string | number)[][] = [];
-  const isFirst = n === 50;
+const start = 50;
+for (var n = start; n < start + len; n++) {
+  let res: (string | number)[][] = [];
+  const isFirst = n === start;
   for (var j = 0; j < covidData.rawData[n].length; j++) {
     res.push([covidData.country[j], covidData.rawData[n][j]]);
   }
 
-  if (isFirst) {
-    res.sort((a, b) => +b[1] - +a[1]);
-  }
+  res = res
+    .sort((a, b) => +b[1] - +a[1])
+    .filter((item) => item[1] > 2)
+    .filter((item) => !(item[0] as string).endsWith('Princess'));
 
   barRaceOptions.push({
     grid: {
@@ -43,7 +45,7 @@ for (var n = 50; n < 50 + len; n++) {
       {
         inverse: true,
         type: 'category',
-        max: n === 50 ? undefined : 15,
+        max: n === start ? undefined : 15,
         nameTextStyle: {
           // color: '#fff',
         },
@@ -69,17 +71,18 @@ for (var n = 50; n < 50 + len; n++) {
       {
         type: 'bar',
         datasetIndex: 0,
+        // colorBy: 'data',
         encode: {
           x: 1,
           y: 0,
         },
         itemStyle: {
-          borderRadius: 2,
+          borderRadius: isFirst ? 0 : 3,
           // color: 'rgba(255, 255, 255, 0.6)',
         },
         realtimeSort: true,
         barWidth: '70%',
-        animationDurationUpdate: 1000,
+        animationDurationUpdate: 1500,
         animationEasingUpdate: isFirst ? 'cubicInOut' : 'linear',
         universalTransition: true,
         label: {

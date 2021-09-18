@@ -7,19 +7,19 @@ import usaJson from './data/usa.json';
 registerMap('usa', usaJson as any, {
   Alaska: {
     // 把阿拉斯加移到美国主大陆左下方
-    left: -113,
-    top: 20,
+    left: -131,
+    top: 25,
     width: 15,
   },
   Hawaii: {
-    left: -95, // 夏威夷
-    top: 20,
+    left: -110, // 夏威夷
+    top: 28,
     width: 5,
   },
   'Puerto Rico': {
     // 波多黎各
-    left: -85,
-    top: 22,
+    left: -76,
+    top: 26,
     width: 2,
   },
 });
