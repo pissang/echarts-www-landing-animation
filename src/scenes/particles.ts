@@ -1,5 +1,5 @@
 // Parliament chart
-import { EChartsOption } from 'echarts';
+import type { EChartsOption } from 'echarts';
 import pieData from './data/pieData';
 import Scene from '../components/Scene';
 

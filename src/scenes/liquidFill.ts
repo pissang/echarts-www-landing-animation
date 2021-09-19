@@ -1,4 +1,3 @@
-import * as echarts from 'echarts';
 import 'echarts-liquidfill';
 import Scene, { GetOption } from '../components/Scene';
 
@@ -95,20 +94,27 @@ const option: GetOption[] = [
     }
 
     return {
-      backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        {
-          offset: 0,
-          color: '#faf2cd',
-        },
-        {
-          offset: 0.4,
-          color: '#d2b083',
-        },
-        {
-          offset: 1,
-          color: '#a38d66',
-        },
-      ]),
+      backgroundColor: {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 0,
+        y2: 1,
+        colorStops: [
+          {
+            offset: 0,
+            color: '#faf2cd',
+          },
+          {
+            offset: 0.4,
+            color: '#d2b083',
+          },
+          {
+            offset: 1,
+            color: '#a38d66',
+          },
+        ],
+      },
       series: [
         {
           id: 'liquidFill',

@@ -1,4 +1,4 @@
-import { ECharts, EChartsOption } from 'echarts';
+import type { ECharts, EChartsOption } from 'echarts';
 import Scene, { GetOption } from '../components/Scene';
 import { defaultColorPalette2, defaultFont } from './common/style';
 // import data from './data/obama-budget.json';
@@ -6,7 +6,7 @@ import data from './data/echarts-package-size.json';
 
 const option: (EChartsOption | GetOption)[] = [
   {
-    tooltip: {},
+    // tooltip: {},
     title: {
       text: 'ECHARTS',
       left: 'center',

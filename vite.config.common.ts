@@ -7,12 +7,12 @@ export default defineConfig({
   resolve: {
     alias: {
       // TODO build with rollup will fail to resolve zrender import
-      zrender: path.resolve(__dirname, 'node_modules/zrender'),
-      echarts: path.resolve(__dirname, 'node_modules/echarts'),
+      // zrender: path.resolve(__dirname, 'node_modules/zrender'),
+      // echarts: path.resolve(__dirname, 'node_modules/echarts'),
     },
   },
 
   optimizeDeps: {
-    exclude: ['echarts-gl', 'echarts-wordcloud', 'echarts-liquidfill'],
+    // exclude: ['echarts-gl', 'echarts-wordcloud', 'echarts-liquidfill'],
   },
 });

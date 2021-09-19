@@ -55,7 +55,7 @@
 import { ref, onMounted, shallowRef, watch, onUnmounted } from 'vue';
 import { useUrlSearchParams } from '@vueuse/core';
 
-import * as echarts from 'echarts';
+import { init } from 'echarts/core';
 import definedScenes from '../scenes/index';
 import Scene from './Scene';
 import type { ECharts } from 'echarts';
@@ -149,9 +149,9 @@ watch(paused, (val) => {
 
 onMounted(() => {
   // Init chart
-  chart.value = echarts.init(containerRef.value!, null, {
+  chart.value = init(containerRef.value!, null, {
     useDirtyRect: true,
-  });
+  }) as any;
   window.onresize = function () {
     chart.value?.resize();
     // Replay current scene.

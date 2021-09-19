@@ -1,4 +1,4 @@
-import { EChartsOption } from 'echarts';
+import type { EChartsOption } from 'echarts';
 import Scene, { GetOption } from '../components/Scene';
 
 const option: (EChartsOption | GetOption)[] = [

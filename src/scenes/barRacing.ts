@@ -1,4 +1,4 @@
-import { EChartsOption } from 'echarts';
+import type { EChartsOption } from 'echarts';
 import { defaultFont } from './common/style';
 import Scene from '../components/Scene';
 import * as covidData from './data/covidData';

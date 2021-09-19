@@ -1,4 +1,4 @@
-import { ECharts, EChartsOption } from 'echarts';
+import type { ECharts, EChartsOption } from 'echarts';
 import { nextTick } from 'vue';
 
 function convertToArray<T>(val: T | T[]): T[] {

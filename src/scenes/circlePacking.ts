@@ -1,4 +1,4 @@
-import { CustomSeriesOption, EChartsOption } from 'echarts';
+import type { CustomSeriesOption, EChartsOption } from 'echarts';
 import Scene from '../components/Scene';
 import { defaultFont } from './common/style';
 import data from './data/echarts-package-size.json';

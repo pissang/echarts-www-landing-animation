@@ -1,4 +1,4 @@
-import { EChartsOption } from 'echarts';
+import type { EChartsOption } from 'echarts';
 import Scene from '../components/Scene';
 import { defaultColorPalette2, defaultFont } from './common/style';
 import data from './data/echarts-package-size.json';

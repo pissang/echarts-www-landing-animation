@@ -1,4 +1,4 @@
-import { EChartsOption } from 'echarts';
+import type { EChartsOption } from 'echarts';
 import { defaultColorPalette, defaultFont } from './common/style';
 import pieData from './data/pieData';
 import Scene from '../components/Scene';

@@ -2,7 +2,7 @@
 // http://paperjs.org/examples/meta-balls/
 // https://medium.com/@tbarrasso/advanced-meta-metaballs-864bbf0a945c
 // https://varun.ca/metaballs/
-import { graphic } from 'echarts';
+import { graphic } from 'echarts/core';
 
 export class MetaballShape {
   // Source circle

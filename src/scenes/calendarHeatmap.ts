@@ -1,13 +1,13 @@
-import { EChartsOption } from 'echarts';
+import type { EChartsOption } from 'echarts';
 import Scene from '../components/Scene';
 import { defaultFont } from './common/style';
 import ghContributions from './data/gh-contributions-2020.json';
 
 const option: EChartsOption = {
-  tooltip: {
-    position: 'top',
-    borderWidth: 0,
-  },
+  // tooltip: {
+  //   position: 'top',
+  //   borderWidth: 0,
+  // },
   textStyle: {
     fontFamily: defaultFont,
   },

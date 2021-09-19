@@ -1,4 +1,5 @@
-import { EChartsOption, registerMap } from 'echarts';
+import type { EChartsOption } from 'echarts';
+import { registerMap } from 'echarts/core';
 import Scene from '../components/Scene';
 import worldGeoJSON from './data/world.json';
 import windsData from './data/windsData';

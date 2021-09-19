@@ -1,4 +1,5 @@
-import { CustomSeriesOption, EChartsOption, graphic } from 'echarts';
+import type { CustomSeriesOption, EChartsOption } from 'echarts';
+import { graphic } from 'echarts/core';
 import Scene, { GetOption } from '../components/Scene';
 import MetaballPath from './common/MetaballPath';
 

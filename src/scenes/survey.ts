@@ -1,5 +1,5 @@
 // Survey chart with circle packing
-import { EChartsOption } from 'echarts';
+import type { EChartsOption } from 'echarts';
 import Scene from '../components/Scene';
 import { packSiblings, packEnclose } from 'd3-hierarchy';
 import pieData from './data/pieData';

@@ -1,4 +1,5 @@
-import { EChartsOption, registerMap } from 'echarts';
+import type { EChartsOption } from 'echarts';
+import { registerMap } from 'echarts/core';
 import { defaultFont } from './common/style';
 import Scene from '../components/Scene';
 import * as covidData from './data/covidData';
@@ -26,15 +27,6 @@ registerMap('usa', usaJson as any, {
 
 const country = covidData.country;
 const data = covidData.rawData[50];
-
-console.log(
-  country.map((name, idx) => {
-    return {
-      name: name,
-      value: data[idx],
-    };
-  })
-);
 
 const mapOptions: EChartsOption[] = [
   {

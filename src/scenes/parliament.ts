@@ -1,5 +1,5 @@
 // Parliament chart
-import { EChartsOption } from 'echarts';
+import type { EChartsOption } from 'echarts';
 import { defaultColorPalette } from './common/style';
 import { layoutSector } from './common/parliamentLayout';
 import pieLayout from './common/pieLayout';

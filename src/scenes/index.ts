@@ -48,8 +48,8 @@ export default [
   wordCloud,
   liquidFill,
   // From large dataset
-  vector,
-  flow,
+  // vector,
+  // flow,
   // realtimeLine,
   // To tiny sparkline
   // dirtyRect,
