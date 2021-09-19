@@ -1,9 +1,10 @@
 {
   "version": "0.0.0",
+  "name": "echarts-www-index-animation",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:gh": "tsc && vite build --base=echarts-www-index-animation",
+    "build:gh": "tsc && vite build --base=echarts-www-index-animation --config gh/vite.config.ts",
     "serve": "vite preview"
   },
   "devDependencies": {

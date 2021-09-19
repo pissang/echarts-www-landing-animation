@@ -10,12 +10,14 @@ if (typeof locale === 'undefined') {
   // console.error("Can't find environment variable ECHARTS_WEBSITE_LANGUAGE");
 }
 
-const i18n = createI18n({
-  locale,
-  messages: {}
-});
+export function init(dom: HTMLElement) {
+  const i18n = createI18n({
+    locale,
+    messages: {},
+  });
 
-const app = createApp(App);
-app.use(i18n);
+  const app = createApp(App);
+  app.use(i18n);
 
-app.mount('#index-viewport');
+  app.mount(dom);
+}

@@ -1,18 +1,16 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
+import viteConfigCommon from './vite.config.common';
 
 export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      // TODO build with rollup will fail to resolve zrender import
-      zrender: path.resolve(__dirname, 'node_modules/zrender'),
-      echarts: path.resolve(__dirname, 'node_modules/echarts'),
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, './src/main.ts'),
+      formats: ['iife'],
+      name: 'indexAnimation',
     },
   },
 
-  optimizeDeps: {
-    exclude: ['echarts-gl', 'echarts-wordcloud', 'echarts-liquidfill'],
-  },
+  ...viteConfigCommon,
 });
