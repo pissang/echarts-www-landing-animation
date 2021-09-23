@@ -176,13 +176,22 @@ onUnmounted(() => {
 
 #stage-main {
   position: absolute;
-  @apply left-0 top-0 h-full w-full;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
   transition: linear 200ms background;
+  user-select: none;
+
+  color: #111;
 }
 
 #stage-viewport {
   position: absolute;
-  @apply left-0 top-0 h-full w-full;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
 }
 
 #stage-title {
@@ -210,7 +219,8 @@ onUnmounted(() => {
 }
 
 #checkpoints {
-  @apply flex justify-center;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
 }
@@ -218,9 +228,13 @@ onUnmounted(() => {
   background-color: black;
   opacity: 0.5;
 
-  @apply rounded-full w-2 h-2 ml-1 mr-1;
-  @apply cursor-pointer;
-  @apply transition-transform;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  margin-left: 4px;
+  margin-right: 4px;
+  cursor: pointer;
+  transition: 100ms linear transform;
 }
 #stage-main.dark #timeline .checkpoint {
   background-color: #fff;
@@ -238,7 +252,10 @@ onUnmounted(() => {
   position: absolute;
   cursor: pointer;
   z-index: 1000;
-  @apply right-6 bottom-4 w-8 h-8;
+  right: 20px;
+  bottom: 15px;
+  width: 35px;
+  height: 35px;
 }
 
 #stage-main.dark #auto-play-control {

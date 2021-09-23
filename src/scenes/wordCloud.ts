@@ -1,5 +1,6 @@
 import 'echarts-wordcloud';
 import Scene, { GetOption } from '../components/Scene';
+import { getContainerFontFamily } from './common/style';
 
 const keywords: Record<string, number> = {
   visualMap: 22199,
@@ -366,6 +367,7 @@ const option: GetOption = (chart) => ({
         800
       ),
       textStyle: {
+        fontFamily: getContainerFontFamily(chart),
         color: function () {
           return (
             'rgb(' +

@@ -10,7 +10,7 @@ import Stage from './components/Stage.vue';
 
 <style scoped>
 #app-main {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

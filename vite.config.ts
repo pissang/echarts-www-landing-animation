@@ -7,11 +7,14 @@ import visualizer from 'rollup-plugin-visualizer';
 export default defineConfig({
   build: {
     sourcemap: false,
+    cssCodeSplit: false,
+    chunkSizeWarningLimit: 1500,
 
     lib: {
       entry: path.resolve(__dirname, './src/main.ts'),
-      formats: ['iife'],
-      name: 'indexAnimation',
+      formats: ['umd'],
+      name: 'featureTrailer',
+      fileName: (formats) => 'echarts-www-feature-trailer.js',
     },
 
     rollupOptions: {

@@ -65,7 +65,17 @@ use([
   UniversalTransition,
 ]);
 
-export function init(dom: HTMLElement) {
+export function init(
+  dom: HTMLElement,
+  opts?: {
+    initialPieLayout?: {
+      left: number;
+      top: number;
+      width: number;
+      height: number;
+    };
+  }
+) {
   const i18n = createI18n({
     locale,
     messages: {},
@@ -76,3 +86,9 @@ export function init(dom: HTMLElement) {
 
   app.mount(dom);
 }
+
+export function pause() {}
+
+export function resume() {}
+
+export function dispose(dom: HTMLElement) {}

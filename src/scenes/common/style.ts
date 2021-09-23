@@ -1,3 +1,5 @@
+import { ECharts } from 'echarts';
+
 export const defaultColorPalette = [
   '#5470c6',
   '#91cc75',
@@ -36,3 +38,7 @@ export const darkColorPalette = [
 ];
 
 export const defaultFont = "'Open Sans Condensed', sans-serif";
+
+export function getContainerFontFamily(chart: ECharts) {
+  return getComputedStyle(chart.getDom()).getPropertyValue('font-family');
+}
