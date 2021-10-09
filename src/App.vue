@@ -1,14 +1,18 @@
 <template>
   <div id="app-main">
-    <Stage v-bind="props"></Stage>
+    <Stage v-bind="props" ref="stage"></Stage>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue';
 import Stage from './components/Stage.vue';
 
+const stage = ref<any>(null);
 // TODO defineProps only support literal type
 const props = defineProps<{
+  updateURLHash?: boolean;
+  initialPieAnimation?: boolean;
   initialPieLayout?: {
     left: number | string;
     top: number | string;
@@ -16,6 +20,15 @@ const props = defineProps<{
     height: number | string;
   };
 }>();
+
+defineExpose({
+  pause() {
+    stage.value?.pause();
+  },
+  resume() {
+    stage.value?.resume();
+  },
+});
 </script>
 
 <style scoped>

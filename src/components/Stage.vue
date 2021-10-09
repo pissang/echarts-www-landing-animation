@@ -59,8 +59,11 @@ import { init } from 'echarts/core';
 import definedScenes from '../scenes/index';
 import Scene from './Scene';
 import type { ECharts } from 'echarts';
+import { pause } from '../main';
 
 const props = defineProps<{
+  updateURLHash?: boolean;
+  initialPieAnimation?: boolean;
   initialPieLayout?: {
     left: number | string;
     top: number | string;
@@ -76,7 +79,7 @@ const playIndex = ref(-1);
 const chart = shallowRef<ECharts | null | undefined>(null);
 const containerRef = ref<HTMLElement | null | undefined>(null);
 const paused = ref(false);
-const audio = shallowRef<HTMLAudioElement>();
+const havingResizeDuringPause = ref(false);
 
 const currentScene = ref<Scene | null>(null);
 
@@ -129,6 +132,7 @@ function playCurrentScene(reset: boolean) {
     chart.value!,
     {
       initialPieLayout: props.initialPieLayout,
+      initialPieAnimation: props.initialPieAnimation,
     },
     () => {
       // Only disable autoplay when it's set false
@@ -138,7 +142,9 @@ function playCurrentScene(reset: boolean) {
     }
   );
 
-  setIndexToHash();
+  if (props.updateURLHash) {
+    setIndexToHash();
+  }
 }
 
 watch(paused, (val) => {
@@ -149,8 +155,18 @@ watch(paused, (val) => {
     ? chart.value.getZr().animation.pause()
     : chart.value.getZr().animation.resume();
 
-  val ? audio.value?.pause() : audio.value?.play();
+  if (!val && havingResizeDuringPause.value) {
+    havingResizeDuringPause.value = false;
+    doResize();
+  }
 });
+
+function doResize() {
+  chart.value?.resize();
+  // Replay current scene.
+  chart.value?.clear();
+  playCurrentScene(true);
+}
 
 onMounted(() => {
   // Init chart
@@ -158,10 +174,11 @@ onMounted(() => {
     useDirtyRect: true,
   }) as any;
   window.onresize = function () {
-    chart.value?.resize();
-    // Replay current scene.
-    chart.value?.clear();
-    playCurrentScene(true);
+    if (paused.value) {
+      havingResizeDuringPause.value = true;
+    } else {
+      doResize();
+    }
   };
   watch(urlParams, () => {
     getIndexFromHash();
@@ -173,6 +190,15 @@ onMounted(() => {
 onUnmounted(() => {
   currentScene.value?.stop(chart.value!);
   chart.value?.dispose();
+});
+
+defineExpose({
+  pause() {
+    paused.value = true;
+  },
+  resume() {
+    paused.value = false;
+  },
 });
 </script>
 

@@ -15,7 +15,6 @@ const pieDataItemStyles = [
 
 const entryPieOptions: GetOption[] = [
   (chart, opts) => {
-    console.log(opts);
     return {
       series: [
         {
@@ -35,7 +34,7 @@ const entryPieOptions: GetOption[] = [
             show: false,
           },
           animationType: 'scale',
-          animationDuration: 500,
+          animationDuration: opts.initialPieAnimation ? 500 : 0,
           animationEasing: 'cubicOut',
           animationDelay(idx) {
             return (1 - idx / 8) * 500;

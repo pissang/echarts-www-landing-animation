@@ -66,6 +66,7 @@ use([
   UniversalTransition,
 ]);
 
+let appVm: any;
 export function init(dom: HTMLElement, opts?: APIOpts) {
   const i18n = createI18n({
     locale,
@@ -77,12 +78,15 @@ export function init(dom: HTMLElement, opts?: APIOpts) {
 
   const app = createApp(App, newOpts as any);
   app.use(i18n);
-
-  app.mount(dom);
+  appVm = app.mount(dom);
 }
 
-export function pause() {}
+export function pause() {
+  appVm && appVm.pause();
+}
 
-export function resume() {}
+export function resume() {
+  appVm && appVm.resume();
+}
 
 export function dispose(dom: HTMLElement) {}

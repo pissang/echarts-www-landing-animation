@@ -5,11 +5,15 @@ interface APIOpts {
     width: number | string;
     height: number | string;
   };
+  initialPieAnimation?: boolean;
+  updateURLHash?: boolean;
 }
 
 export type { APIOpts };
 
 export const defaultApiOpts = {
+  initialPieAnimation: true,
+  updateURLHash: true,
   initialPieLayout: {
     left: 0,
     top: 0,
