@@ -1,11 +1,21 @@
 <template>
   <div id="app-main">
-    <Stage></Stage>
+    <Stage v-bind="props"></Stage>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Stage from './components/Stage.vue';
+
+// TODO defineProps only support literal type
+const props = defineProps<{
+  initialPieLayout?: {
+    left: number | string;
+    top: number | string;
+    width: number | string;
+    height: number | string;
+  };
+}>();
 </script>
 
 <style scoped>

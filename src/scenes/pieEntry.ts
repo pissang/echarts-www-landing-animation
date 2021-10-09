@@ -1,31 +1,58 @@
 import type { EChartsOption } from 'echarts';
 import pieData from './data/pieData';
-import Scene from '../components/Scene';
+import Scene, { GetOption } from '../components/Scene';
 
-const entryPieOptions: EChartsOption[] = [
-  {
-    series: [
-      {
-        type: 'pie',
-        center: ['70%', '50%'],
-        radius: ['10%', '70%'],
-        roseType: 'radius',
-        label: {
-          show: false,
+const pieDataItemStyles = [
+  { borderRadius: [0, 20] },
+  { borderRadius: [0, 18] },
+  { borderRadius: [0, 16] },
+  { borderRadius: [0, 14] },
+  { borderRadius: [0, 12] },
+  { borderRadius: [0, 10] },
+  { borderRadius: [0, 8] },
+  { borderRadius: [0, 6] },
+];
+
+const entryPieOptions: GetOption[] = [
+  (chart, opts) => {
+    console.log(opts);
+    return {
+      series: [
+        {
+          type: 'pie',
+          radius: ['10%', '100%'],
+          center: ['50%', '50%'],
+          roseType: 'radius',
+          ...opts?.initialPieLayout,
+          label: {
+            show: false,
+          },
+          itemStyle: {
+            borderColor: 'white',
+            borderWidth: 4,
+          },
+          labelLine: {
+            show: false,
+          },
+          animationType: 'scale',
+          animationDuration: 500,
+          animationEasing: 'cubicOut',
+          animationDelay(idx) {
+            return (1 - idx / 8) * 500;
+          },
+          universalTransition: {
+            enabled: true,
+            seriesKey: 'point',
+          },
+          data: pieData.map((dataItem, idx) => {
+            return {
+              ...dataItem,
+              itemStyle: pieDataItemStyles[idx],
+            };
+          }),
         },
-        itemStyle: {
-          borderRadius: 10,
-          borderColor: '#fff',
-          borderWidth: 5,
-        },
-        universalTransition: {
-          enabled: true,
-          seriesKey: 'point',
-        },
-        animationDurationUpdate: 1000,
-        data: pieData,
-      },
-    ],
+      ],
+    };
   },
 ];
 

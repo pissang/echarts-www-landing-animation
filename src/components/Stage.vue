@@ -59,7 +59,15 @@ import { init } from 'echarts/core';
 import definedScenes from '../scenes/index';
 import Scene from './Scene';
 import type { ECharts } from 'echarts';
-// import audioSource from '../assets/bensound-happyrock.mp3';
+
+const props = defineProps<{
+  initialPieLayout?: {
+    left: number | string;
+    top: number | string;
+    width: number | string;
+    height: number | string;
+  };
+}>();
 
 const scenes = shallowRef<Scene[]>(definedScenes);
 const sceneIndices = ref(scenes.value.map((scene, idx) => idx));
@@ -74,15 +82,6 @@ const currentScene = ref<Scene | null>(null);
 
 const urlParams =
   useUrlSearchParams<{ scene: string; autoplay: string }>('history');
-
-if (urlParams.autoplay !== 'false') {
-  // audio.value = document.createElement('audio');
-  // audio.value.src = audioSource;
-  // audio.value.autoplay = true;
-  // window.onclick = () => {
-  //   audio.value?.play();
-  // };
-}
 
 function setIndexToHash() {
   urlParams.scene = playIndex.value + '';
@@ -126,12 +125,18 @@ function playCurrentScene(reset: boolean) {
     currentScene.value.reset();
   }
 
-  currentScene.value.play(chart.value!, () => {
-    // Only disable autoplay when it's set false
-    if (urlParams.autoplay !== 'false') {
-      nextScene();
+  currentScene.value.play(
+    chart.value!,
+    {
+      initialPieLayout: props.initialPieLayout,
+    },
+    () => {
+      // Only disable autoplay when it's set false
+      if (urlParams.autoplay !== 'false') {
+        nextScene();
+      }
     }
-  });
+  );
 
   setIndexToHash();
 }
@@ -149,7 +154,7 @@ watch(paused, (val) => {
 
 onMounted(() => {
   // Init chart
-  chart.value = init(containerRef.value!, null, {
+  chart.value = init(containerRef.value as any, undefined, {
     useDirtyRect: true,
   }) as any;
   window.onresize = function () {

@@ -1,11 +1,15 @@
 import type { ECharts, EChartsOption } from 'echarts';
 import { nextTick } from 'vue';
+import { APIOpts } from '../apiOpts';
 
 function convertToArray<T>(val: T | T[]): T[] {
   return Array.isArray(val) ? val : [val];
 }
 
-export type GetOption = (chart: ECharts) => EChartsOption | undefined | void;
+export type GetOption = (
+  chart: ECharts,
+  apiOpts: APIOpts
+) => EChartsOption | undefined | void;
 
 type Animator = ReturnType<typeof chartSetTimeout>;
 
@@ -104,18 +108,18 @@ class Scene {
     this._currentIndex = 0;
   }
 
-  play(chart: ECharts, onfinish: () => void) {
+  play(chart: ECharts, apiOpts: APIOpts, onfinish: () => void) {
     if (this._timeout) {
       chartClearTimeout(chart, this._timeout);
     }
-    this._playCurrent(chart, onfinish);
+    this._playCurrent(chart, apiOpts, onfinish);
   }
 
   stop(chart: ECharts) {
     chartClearTimeout(chart, this._timeout);
   }
 
-  private _playCurrent(chart: ECharts, onfinish: () => void) {
+  private _playCurrent(chart: ECharts, apiOpts: APIOpts, onfinish: () => void) {
     if (this._currentIndex >= this._options.length) {
       onfinish();
       return;
@@ -123,7 +127,7 @@ class Scene {
     const notMerge = this._currentIndex === 0;
     const option = this._options[this._currentIndex];
     if (typeof option === 'function') {
-      const ret = option(chart);
+      const ret = option(chart, apiOpts);
       if (ret) {
         chart.setOption(ret, notMerge);
       }
@@ -138,7 +142,7 @@ class Scene {
     this._timeout = chartSetTimeout(
       chart,
       () => {
-        this._playCurrent(chart, onfinish);
+        this._playCurrent(chart, apiOpts, onfinish);
       },
       duration
     );

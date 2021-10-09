@@ -11,7 +11,7 @@ const angles: number[] = pieLayout(pieData, -Math.PI / 2, Math.PI * 2);
 const radius = ['30%', '80%'];
 
 // const columnCount = Math.ceil(Math.sqrt(pieData.length));
-const columnCount = pieData.length;
+const columnCount = 4;
 const rowCount = Math.ceil(pieData.length / columnCount);
 
 const surveyOption: EChartsOption = {

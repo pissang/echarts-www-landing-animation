@@ -31,6 +31,7 @@ import {
 import { CanvasRenderer } from 'echarts/renderers';
 
 import { UniversalTransition } from 'echarts/features';
+import { APIOpts, defaultApiOpts } from './apiOpts';
 
 // @ts-ignore
 const locale: string = window.ECHARTS_WEBSITE_LANGUAGE;
@@ -65,23 +66,16 @@ use([
   UniversalTransition,
 ]);
 
-export function init(
-  dom: HTMLElement,
-  opts?: {
-    initialPieLayout?: {
-      left: number;
-      top: number;
-      width: number;
-      height: number;
-    };
-  }
-) {
+export function init(dom: HTMLElement, opts?: APIOpts) {
   const i18n = createI18n({
     locale,
     messages: {},
   });
 
-  const app = createApp(App);
+  const newOpts: APIOpts = {};
+  Object.assign(newOpts, defaultApiOpts, opts);
+
+  const app = createApp(App, newOpts as any);
   app.use(i18n);
 
   app.mount(dom);
