@@ -34,7 +34,8 @@ const entryPieOptions: GetOption[] = [
             show: false,
           },
           animationType: 'scale',
-          animationDuration: opts.initialPieAnimation ? 500 : 0,
+          // animationDuration: opts.initialPieAnimation ? 500 : 0
+          animationDuration: 0,
           animationEasing: 'cubicOut',
           animationDelay(idx) {
             return (1 - idx / 8) * 500;
@@ -57,5 +58,5 @@ const entryPieOptions: GetOption[] = [
 
 export default new Scene({
   option: entryPieOptions,
-  duration: 1500,
+  duration: 200,
 });
