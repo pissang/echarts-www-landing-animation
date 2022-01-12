@@ -13,8 +13,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, './src/main.ts'),
       formats: ['umd'],
-      name: 'featureTrailer',
-      fileName: (formats) => 'echarts-www-feature-trailer.js',
+      name: 'landingAnimation',
+      fileName: (formats) => 'echarts-www-landing-animation.js',
     },
 
     rollupOptions: {

@@ -1,11 +1,11 @@
 {
   "version": "0.0.0",
-  "name": "echarts-www-feature-trailer",
-  "main": "dist/echarts-www-feature-trailer.js",
+  "name": "echarts-www-landing-animation",
+  "main": "dist/echarts-www-landing-animation.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:gh": "tsc && vite build --base=echarts-www-feature-trailer --config gh/vite.config.ts",
+    "build:gh": "tsc && vite build --base=echarts-www-landing-animation --config gh/vite.config.ts",
     "serve": "vite preview"
   },
   "devDependencies": {
