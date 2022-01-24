@@ -1,0 +1,14 @@
+/gh
+/script
+/.vscode
+/.github
+/src
+/vite.config.common.ts
+/vite.config.ts
+/tailwind.config.js
+/tsconfig.json
+/postcss.config.js
+.DS_Store
+index.html
+stats.html
+/.*
