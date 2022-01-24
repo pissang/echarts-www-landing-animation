@@ -19,7 +19,7 @@ const option: GetOption[] = [
             lineWidth: 1,
           },
           keyframeAnimation: {
-            duration: 3000,
+            duration: 2000,
             keyframes: [
               {
                 percent: 0.7,

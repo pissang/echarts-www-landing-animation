@@ -5,6 +5,9 @@ import viteConfigCommon from './vite.config.common';
 import visualizer from 'rollup-plugin-visualizer';
 
 export default defineConfig({
+  server: {
+    hmr: false,
+  },
   build: {
     sourcemap: false,
     cssCodeSplit: false,

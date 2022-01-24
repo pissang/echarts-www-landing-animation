@@ -1,12 +1,13 @@
 {
-  "version": "0.0.0",
+  "version": "0.1.0",
   "name": "echarts-www-landing-animation",
   "main": "dist/echarts-www-landing-animation.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "build:gh": "tsc && vite build --base=echarts-www-landing-animation --config gh/vite.config.ts",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/d3-geo": "^3.0.2",
