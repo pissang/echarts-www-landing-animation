@@ -9,6 +9,7 @@ const pieOption: EChartsOption[] = [
         type: 'pie',
         center: ['50%', '50%'],
         radius: ['30%', '80%'],
+        silent: true,
         label: {
           show: false,
         },

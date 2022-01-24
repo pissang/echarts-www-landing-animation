@@ -184,6 +184,7 @@ const option: GetOption[] = [
   (chart) => {
     return {
       graphic: {
+        animationDurationUpdate: 2000,
         elements: [
           {
             $action: 'remove',
@@ -208,7 +209,7 @@ const option: GetOption[] = [
 
 export default new Scene({
   option,
-  duration: 5000,
+  duration: [3000, 3000, 1500],
   title: 'Liquid Fill Extension',
   dark: false,
 });

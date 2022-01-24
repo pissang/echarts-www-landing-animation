@@ -66,7 +66,6 @@ const surveyOption: EChartsOption = {
         children: circles.map((circle) => {
           return {
             type: 'circle',
-            // TODO enable it when it's fixed
             // autoBatch: true,
             shape: {
               cx: cx + circle.x,
