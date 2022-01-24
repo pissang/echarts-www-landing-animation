@@ -1,29 +1,7 @@
 import type { EChartsOption } from 'echarts';
-import { registerMap } from 'echarts/core';
 import { defaultFont } from './common/style';
 import Scene from '../components/Scene';
 import * as covidData from './data/covidData';
-import usaJson from './data/usa.json';
-
-registerMap('usa', usaJson as any, {
-  Alaska: {
-    // 把阿拉斯加移到美国主大陆左下方
-    left: -131,
-    top: 25,
-    width: 15,
-  },
-  Hawaii: {
-    left: -110, // 夏威夷
-    top: 28,
-    width: 5,
-  },
-  'Puerto Rico': {
-    // 波多黎各
-    left: -76,
-    top: 26,
-    width: 2,
-  },
-});
 
 const country = covidData.country;
 const data = covidData.rawData[50];

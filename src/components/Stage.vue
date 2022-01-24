@@ -60,6 +60,7 @@ import definedScenes from '../scenes/index';
 import Scene from './Scene';
 import type { ECharts } from 'echarts';
 import { pause } from '../main';
+import { addListener, removeListener } from 'resize-detector';
 
 const props = defineProps<{
   updateURLHash?: boolean;
@@ -168,18 +169,24 @@ function doResize() {
   playCurrentScene(true);
 }
 
+function onContainerResize() {
+  if (paused.value) {
+    havingResizeDuringPause.value = true;
+  } else {
+    doResize();
+  }
+}
+
 onMounted(() => {
   // Init chart
   chart.value = init(containerRef.value as any, undefined, {
     useDirtyRect: true,
   }) as any;
-  window.onresize = function () {
-    if (paused.value) {
-      havingResizeDuringPause.value = true;
-    } else {
-      doResize();
-    }
-  };
+
+  // TODO
+  // containerRef.value may have 0 height sometimes on the gh-pages. Not know why yet.
+  addListener(containerRef.value!, onContainerResize);
+
   watch(urlParams, () => {
     getIndexFromHash();
   });
@@ -190,6 +197,8 @@ onMounted(() => {
 onUnmounted(() => {
   currentScene.value?.stop(chart.value!);
   chart.value?.dispose();
+
+  removeListener(containerRef.value!, onContainerResize);
 });
 
 defineExpose({

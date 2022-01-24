@@ -2,7 +2,7 @@ import { createI18n } from 'vue-i18n';
 
 import App from './App.vue';
 import { createApp } from 'vue';
-import { use } from 'echarts/core';
+import { use, registerMap } from 'echarts/core';
 import {
   BarChart,
   CustomChart,
@@ -33,12 +33,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 import { UniversalTransition } from 'echarts/features';
 import { APIOpts, defaultApiOpts } from './apiOpts';
 
-// @ts-ignore
-const locale: string = window.ECHARTS_WEBSITE_LANGUAGE;
-
-if (typeof locale === 'undefined') {
-  // console.error("Can't find environment variable ECHARTS_WEBSITE_LANGUAGE");
-}
+import usaJson from './scenes/data/usa.json';
 
 use([
   BarChart,
@@ -65,6 +60,33 @@ use([
   CanvasRenderer,
   UniversalTransition,
 ]);
+
+registerMap('usa', usaJson as any, {
+  Alaska: {
+    // 把阿拉斯加移到美国主大陆左下方
+    left: -131,
+    top: 25,
+    width: 15,
+  },
+  Hawaii: {
+    left: -110, // 夏威夷
+    top: 28,
+    width: 5,
+  },
+  'Puerto Rico': {
+    // 波多黎各
+    left: -76,
+    top: 26,
+    width: 2,
+  },
+});
+
+// @ts-ignore
+const locale: string = window.ECHARTS_WEBSITE_LANGUAGE;
+
+if (typeof locale === 'undefined') {
+  // console.error("Can't find environment variable ECHARTS_WEBSITE_LANGUAGE");
+}
 
 let appVm: any;
 export function init(dom: HTMLElement, opts?: APIOpts) {
