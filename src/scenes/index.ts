@@ -23,6 +23,7 @@ import wordCloud from './wordCloud';
 import liquidFill from './liquidFill';
 import dirtyRect from './dirtyRect';
 import map from './map';
+import end from './end';
 
 export default [
   pieEntry,
@@ -47,6 +48,7 @@ export default [
   gaugeCar,
   wordCloud,
   liquidFill,
+  end,
   // From large dataset
   // vector,
   // flow,
