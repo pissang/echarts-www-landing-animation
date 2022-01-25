@@ -17,6 +17,7 @@ const option: GetOption[] = [
             fill: 'transparent',
             stroke: '#000',
             lineWidth: 1,
+            fontFamily: `'Open Sans', 'Open Sans Condensed', sans-serif`,
           },
           keyframeAnimation: {
             duration: 2000,

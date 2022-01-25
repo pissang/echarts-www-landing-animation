@@ -22,7 +22,9 @@ const entryPieOptions: GetOption[] = [
           radius: ['20%', '100%'],
           center: ['50%', '50%'],
           roseType: 'radius',
-          silent: true,
+          emphasis: {
+            disabled: true,
+          },
           ...opts?.initialPieLayout,
           label: {
             show: false,
