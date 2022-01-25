@@ -83,9 +83,11 @@ const option: GetOption[] = [
             },
             style: {
               fill: '#e43a61',
-              stroke: '#000',
               strokeFirst: true,
-              lineWidth: 5,
+              shadowBlur: 10,
+              shadowColor: 'rgba(228, 58, 97, 0.5)',
+              // stroke: '#000',
+              // lineWidth: 5,
               lineJoin: 'round',
             },
           };
