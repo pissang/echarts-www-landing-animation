@@ -14,7 +14,8 @@ const pieOption: EChartsOption[] = [
           show: false,
         },
         itemStyle: {
-          borderRadius: 0,
+          borderRadius: [0, 0],
+          borderWidth: 0,
         },
         universalTransition: {
           enabled: true,

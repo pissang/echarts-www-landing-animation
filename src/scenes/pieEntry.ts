@@ -3,14 +3,14 @@ import pieData from './data/pieData';
 import Scene, { GetOption } from '../components/Scene';
 
 const pieDataItemStyles = [
-  { borderRadius: [0, 20] },
-  { borderRadius: [0, 18] },
-  { borderRadius: [0, 16] },
-  { borderRadius: [0, 14] },
-  { borderRadius: [0, 12] },
-  { borderRadius: [0, 10] },
-  { borderRadius: [0, 8] },
-  { borderRadius: [0, 6] },
+  { borderRadius: [5, 20] },
+  { borderRadius: [5, 18] },
+  { borderRadius: [5, 16] },
+  { borderRadius: [5, 14] },
+  { borderRadius: [5, 12] },
+  { borderRadius: [5, 10] },
+  { borderRadius: [5, 8] },
+  { borderRadius: [5, 6] },
 ];
 
 const entryPieOptions: GetOption[] = [
@@ -19,7 +19,7 @@ const entryPieOptions: GetOption[] = [
       series: [
         {
           type: 'pie',
-          radius: ['10%', '100%'],
+          radius: ['20%', '100%'],
           center: ['50%', '50%'],
           roseType: 'radius',
           silent: true,
