@@ -47,6 +47,25 @@
     </div>
     <div id="stage-title" :style="currentScene?.getTitleStyle() || ''">
       {{ currentScene?.getTitle() || '' }}
+      <a
+        class="code"
+        href="https://stackblitz.com/github/pissang/echarts-www-landing-animation?file=src/scenes/pieEntry.ts"
+        target="_blank"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+          />
+        </svg>
+      </a>
     </div>
   </div>
 </template>
@@ -246,7 +265,32 @@ defineExpose({
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
+#stage-title .code {
+  display: inline-block;
+  width: 30px;
+  height: 35px;
+  vertical-align: middle;
+  border-radius: 5px;
+  padding: 5px;
+  color: #5470c6;
+  transition: 0.2s linear all;
+}
+
+#stage-title .code:hover {
+  background: #5470c6;
+  color: #fff;
+}
+
 #stage-main.dark #stage-title {
+  color: #fff;
+}
+
+#stage-main.dark #stage-title .code {
+  color: #4992ff;
+}
+
+#stage-main.dark #stage-title .code:hover {
+  background-color: #4992ff;
   color: #fff;
 }
 
