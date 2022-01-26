@@ -11,7 +11,7 @@ const option: (EChartsOption | GetOption)[] = [
       {
         name: 'Pressure',
         type: 'gauge',
-        animationDuration: 10000,
+        animationDuration: 5000,
         animationEasing: 'quadraticOut',
         radius: '80%',
         max: 300,
@@ -122,7 +122,7 @@ const option: (EChartsOption | GetOption)[] = [
 
 export default new Scene({
   option,
-  duration: 10000,
+  duration: 5000,
   title: 'Gauge',
   dark: true,
   background: '#001122',
