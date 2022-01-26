@@ -237,11 +237,15 @@ const option: GetOption[] = [
                     {
                       percent: 0,
                       x: chart.getWidth() / 2 + getEndingFontSize(chart) * 2,
+                      scaleX: 2,
+                      scaleY: 2,
                       rotation: 0.5,
                     },
                     {
                       percent: 1,
                       x: chart.getWidth() / 2,
+                      scaleX: 1,
+                      scaleY: 1,
                       rotation: 0,
                     },
                   ],
