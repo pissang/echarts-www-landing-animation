@@ -49,6 +49,7 @@ const option: (EChartsOption | GetOption)[] = [
 ];
 
 export default new Scene({
+  file: 'treemap',
   title: 'Treemap',
   option,
   duration: [2000, 2000, 2000],

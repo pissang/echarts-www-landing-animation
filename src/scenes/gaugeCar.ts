@@ -123,6 +123,7 @@ const option: (EChartsOption | GetOption)[] = [
 export default new Scene({
   option,
   duration: 5000,
+  file: 'gaugeCar',
   title: 'Gauge',
   dark: true,
   background: '#001122',

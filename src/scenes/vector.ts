@@ -88,6 +88,7 @@ const option: EChartsOption = {
 };
 
 export default new Scene({
+  file: 'vector',
   title: 'Visualize Vector Data',
   option,
   duration: 2000,

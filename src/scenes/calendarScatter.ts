@@ -100,6 +100,7 @@ const option: (EChartsOption | GetOption)[] = [
 export default new Scene({
   option,
   duration: [1000, 1000, 3000],
+  file: 'calendarScatter',
   title: 'Calendar Scatter',
   dark: true,
   background: '#001122',

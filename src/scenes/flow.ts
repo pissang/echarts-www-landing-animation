@@ -66,6 +66,7 @@ const option: EChartsOption = {
 };
 
 export default new Scene({
+  file: 'flow',
   title: 'And Flow It',
   option,
   duration: 8000,

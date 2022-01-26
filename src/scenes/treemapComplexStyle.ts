@@ -94,6 +94,7 @@ const option: EChartsOption = {
 };
 
 export default new Scene({
+  file: 'treemapComplexStyle',
   title: 'Customize to Complex Style',
   option,
   duration: 3000,

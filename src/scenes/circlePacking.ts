@@ -145,6 +145,7 @@ const option: EChartsOption = {
 };
 
 export default new Scene({
+  file: 'circlePacking',
   title: 'Custom Circle Packing',
   option,
   duration: 3000,

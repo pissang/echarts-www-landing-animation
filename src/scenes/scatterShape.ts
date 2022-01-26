@@ -184,6 +184,7 @@ const option: (EChartsOption | GetOption)[] = [
 export default new Scene({
   option,
   duration: 800,
+  file: 'scatterShape',
   title: 'Scatter Shapes',
   dark: true,
   background: 'linear-gradient(to top, #5f72bd 0%, #9b23ea 100%)',

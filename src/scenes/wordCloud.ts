@@ -398,6 +398,7 @@ maskImage.src =
 export default new Scene({
   option,
   duration: 3000,
+  file: 'wordCloud',
   title: 'Word Cloud Extension',
   dark: false,
 });

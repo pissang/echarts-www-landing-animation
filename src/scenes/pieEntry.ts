@@ -61,5 +61,6 @@ const entryPieOptions: GetOption[] = [
 
 export default new Scene({
   option: entryPieOptions,
+  file: 'pieEntry',
   duration: 200,
 });

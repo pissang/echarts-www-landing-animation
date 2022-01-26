@@ -43,6 +43,7 @@ const bar: EChartsOption = {
 
 export default new Scene({
   option: bar,
+  file: 'bar',
   title: 'Basic Bar Chart',
   // titleStyle: 'right:10px;top:20px;left:auto;bottom:auto;',
   duration: 2500,

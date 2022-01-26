@@ -66,5 +66,6 @@ const mapOptions: EChartsOption[] = [
 export default new Scene({
   option: mapOptions,
   duration: 1000,
+  file: 'map',
   title: 'Choropleth Map with Albers Projection',
 });

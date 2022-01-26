@@ -113,6 +113,7 @@ const option: EChartsOption = {
 };
 export default new Scene({
   option,
+  file: 'lineRacing',
   title: 'Racing Line Chart',
   // background: 'linear-gradient(to top, #f77062 0%, #fe5196 100%)',
   background: '#001122',

@@ -92,6 +92,7 @@ const option: (EChartsOption | GetOption)[] = [
 ];
 
 export default new Scene({
+  file: 'sunburst',
   title: 'Sunburst',
   option,
   dark: true,

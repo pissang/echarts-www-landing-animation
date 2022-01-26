@@ -82,6 +82,7 @@ const option: (EChartsOption | GetOption)[] = [
 export default new Scene({
   option,
   duration: 800,
+  file: 'dirtyRect',
   title: 'Dirty Rectangle Rendering',
   dark: true,
   background: '#001122',

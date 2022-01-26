@@ -53,6 +53,8 @@ class Scene {
   private _dark: boolean;
   private _background: string;
 
+  private _file: string;
+
   private _currentIndex: number = 0;
 
   private _timeout?: Animator;
@@ -68,6 +70,8 @@ class Scene {
     title?: string;
     titleStyle?: string;
     dark?: boolean;
+
+    file?: string;
   }) {
     this._options = convertToArray(opts.option);
     this._durations = convertToArray(opts.duration);
@@ -75,6 +79,7 @@ class Scene {
     this._titleStyle = opts.titleStyle || '';
     this._background = opts.background || '';
     this._dark = opts.dark || false;
+    this._file = opts.file || 'pieEntry';
   }
 
   getDuration() {
@@ -85,6 +90,10 @@ class Scene {
       sum += duration;
     });
     return sum;
+  }
+
+  getFile() {
+    return this._file;
   }
 
   getTitle() {

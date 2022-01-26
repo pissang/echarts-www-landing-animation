@@ -282,6 +282,7 @@ const waveOption: EChartsOption[] = [
 
 export default new Scene({
   option: waveOption,
+  file: 'particles',
   title: 'Customized Particles Animation',
   // background: 'orange',
   background: '#707585',

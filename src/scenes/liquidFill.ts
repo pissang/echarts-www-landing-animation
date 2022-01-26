@@ -289,6 +289,7 @@ const option: GetOption[] = [
 export default new Scene({
   option,
   duration: [3000, 3000, 1500],
+  file: 'liquidFill',
   title: 'Liquid Fill Extension',
   dark: false,
 });

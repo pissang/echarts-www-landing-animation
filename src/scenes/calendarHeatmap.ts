@@ -55,6 +55,7 @@ const option: EChartsOption = {
 export default new Scene({
   option,
   duration: 200,
+  file: 'calendarHeatmap',
   title: 'Calendar Heatmap',
   dark: true,
   background: '#001122',

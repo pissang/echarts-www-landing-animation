@@ -47,6 +47,7 @@ const option: (EChartsOption | GetOption)[] = [
 export default new Scene({
   option,
   duration: 1000,
+  file: 'realtimeLine',
   title: 'Time Series Line',
   dark: false,
 });

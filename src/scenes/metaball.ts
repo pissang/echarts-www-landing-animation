@@ -208,6 +208,7 @@ const option: (EChartsOption | GetOption)[] = [
 
 export default new Scene({
   option,
+  file: 'metaball',
   title: 'Extending Your Shape',
   duration: [
     100,

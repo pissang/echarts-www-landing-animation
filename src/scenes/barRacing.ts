@@ -101,6 +101,7 @@ for (var n = start; n < start + len; n++) {
 export default new Scene({
   option: barRaceOptions,
   duration: [2000, 1000],
+  file: 'barRacing',
   title: 'Racing Bar Chart',
   // background: 'linear-gradient(to top, #f77062 0%, #fe5196 100%)',
   // dark: true,

@@ -49,7 +49,8 @@
       {{ currentScene?.getTitle() || '' }}
       <a
         class="code"
-        href="https://stackblitz.com/github/pissang/echarts-www-landing-animation?file=src/scenes/pieEntry.ts"
+        title="Jump to source code"
+        :href="`https://stackblitz.com/github/pissang/echarts-www-landing-animation?file=src/scenes/${currentScene?.getFile()}.ts`"
         target="_blank"
       >
         <svg

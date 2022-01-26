@@ -99,6 +99,7 @@ const option: GetOption[] = [
 export default new Scene({
   option,
   duration: 3000,
+  file: 'end',
   title: '',
   dark: false,
 });
