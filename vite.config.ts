@@ -20,16 +20,16 @@ export default defineConfig({
       fileName: (formats) => 'echarts-www-landing-animation.js',
     },
 
-    rollupOptions: {
-      plugins: [
-        visualizer({
-          // open: true,
-          sourcemap: false,
-          gzipSize: true,
-          brotliSize: true,
-        }),
-      ],
-    },
+    // rollupOptions: {
+    //   plugins: [
+    //     visualizer({
+    //       // open: true,
+    //       sourcemap: false,
+    //       gzipSize: true,
+    //       brotliSize: true,
+    //     }),
+    //   ],
+    // },
   },
 
   ...viteConfigCommon,

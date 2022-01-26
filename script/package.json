@@ -1,0 +1,9 @@
+{
+  "version": "0.0.3",
+  "devDependencies": {
+    "chalk": "^3.0.0",
+    "cheerio": "^1.0.0-rc.10",
+    "fs-extra": "^8.1.0",
+    "node-fetch": "^2.6.1"
+  }
+}
