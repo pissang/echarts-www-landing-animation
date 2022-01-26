@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+// import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import viteConfigCommon from './vite.config.common';
-import visualizer from 'rollup-plugin-visualizer';
+// import visualizer from 'rollup-plugin-visualizer';
 
 export default defineConfig({
   server: {
