@@ -272,7 +272,6 @@ defineExpose({
   height: 35px;
   vertical-align: middle;
   border-radius: 5px;
-  padding: 5px;
   color: #5470c6;
   transition: 0.2s linear all;
 }
